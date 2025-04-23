@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
@@ -33,6 +37,7 @@ const Comparison: React.FC = () => {
     { name: "Gebruiksvriendelijkheid", key: "ease" },
   ];
 
+<<<<<<< HEAD
   // Get feature values directly from musicTools data
   const getFeatureValue = (toolId: string, featureKey: string) => {
     const tool = musicTools.find(t => t.id === toolId);
@@ -54,6 +59,18 @@ const Comparison: React.FC = () => {
       default:
         return null;
     }
+=======
+  // Mock feature data (in a real app, this would come from an API or database)
+  const toolFeatures: Record<string, Record<string, boolean | number>> = {
+    "1": { ai: true, free: true, desktop: true, mobile: false, export: true, ease: 4 },
+    "2": { ai: true, free: true, desktop: false, mobile: true, export: true, ease: 5 },
+    "3": { ai: true, free: false, desktop: true, mobile: true, export: true, ease: 3 },
+    "4": { ai: true, free: true, desktop: false, mobile: false, export: false, ease: 4 },
+    "5": { ai: true, free: false, desktop: true, mobile: false, export: true, ease: 5 },
+    "6": { ai: true, free: true, desktop: false, mobile: false, export: true, ease: 4 },
+    "7": { ai: true, free: false, desktop: true, mobile: true, export: true, ease: 4 },
+    "8": { ai: true, free: true, desktop: false, mobile: false, export: true, ease: 3 },
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
   };
 
   return (
@@ -162,13 +179,21 @@ const Comparison: React.FC = () => {
                       <td className="p-4 font-medium">{feature.name}</td>
                       {[0, 1].map((position) => {
                         const toolId = selectedTools[position];
+<<<<<<< HEAD
                         const featureValue = getFeatureValue(toolId, feature.key);
+=======
+                        const featureValue = toolFeatures[toolId]?.[feature.key];
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
                         
                         return (
                           <td key={position} className="p-4 text-center">
                             {feature.key === 'ease' ? (
                               <div className="flex justify-center">
+<<<<<<< HEAD
                                 <RatingStars rating={featureValue as number || 0} readOnly={true} />
+=======
+                                <RatingStars rating={featureValue as number} readOnly={true} />
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
                               </div>
                             ) : typeof featureValue === "boolean" ? (
                               featureValue ? (
@@ -187,10 +212,17 @@ const Comparison: React.FC = () => {
                   <tr>
                     <td className="p-4 font-medium">Prijs</td>
                     <td className="p-4 text-center">
+<<<<<<< HEAD
                       {musicTools.find(t => t.id === selectedTools[0])?.price || "N/A"}
                     </td>
                     <td className="p-4 text-center">
                       {musicTools.find(t => t.id === selectedTools[1])?.price || "N/A"}
+=======
+                      {Math.floor(Math.random() * 3) === 0 ? "Gratis" : `€${(Math.random() * 50 + 10).toFixed(2)}/maand`}
+                    </td>
+                    <td className="p-4 text-center">
+                      {Math.floor(Math.random() * 3) === 0 ? "Gratis" : `€${(Math.random() * 50 + 10).toFixed(2)}/maand`}
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
                     </td>
                   </tr>
                   <tr>

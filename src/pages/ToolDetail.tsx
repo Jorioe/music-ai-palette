@@ -224,11 +224,19 @@ const ToolDetail: React.FC = () => {
           )}
           
           {/* Reviews sectie */}
+<<<<<<< HEAD
           {/* <section className="my-10">
             <h2 className="text-2xl font-bold mb-6">Reviews</h2> */}
             
             {/* Bestaande reviews */}
             {/* {reviews.length > 0 ? (
+=======
+          <section className="my-10">
+            <h2 className="text-2xl font-bold mb-6">Reviews</h2>
+            
+            {/* Bestaande reviews */}
+            {reviews.length > 0 ? (
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
               <div className="space-y-6 mb-10">
                 {reviews.map((review, index) => (
                   <div key={index} className="bg-card p-4 rounded-lg border border-border">
@@ -243,10 +251,17 @@ const ToolDetail: React.FC = () => {
               </div>
             ) : (
               <p className="text-muted-foreground mb-6">Nog geen reviews. Wees de eerste om een review te schrijven!</p>
+<<<<<<< HEAD
             )} */}
             
             {/* Review formulier */}
             {/* <div className="bg-card border border-border p-6 rounded-lg">
+=======
+            )}
+            
+            {/* Review formulier */}
+            <div className="bg-card border border-border p-6 rounded-lg">
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
               <h3 className="text-lg font-bold mb-4">Schrijf een review</h3>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmitReview)} className="space-y-4">
@@ -307,8 +322,13 @@ const ToolDetail: React.FC = () => {
                   </Button>
                 </form>
               </Form>
+<<<<<<< HEAD
             </div> */}
           {/* </section> */}
+=======
+            </div>
+          </section>
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
         </div>
       </main>
     </div>

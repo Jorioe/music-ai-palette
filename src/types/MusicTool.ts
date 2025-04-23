@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
 export type ToolCategory = 'lyrics' | 'composition' | 'vocals' | 'mastering' | 'all';
 
 export interface MusicTool {
@@ -13,6 +17,7 @@ export interface MusicTool {
   extraInfo: string;
   userRating?: number;
   videoUrl?: string; // OPTIONAL: je kan nu ook een videoUrl meegeven.
+<<<<<<< HEAD
   // Nieuwe eigenschappen voor vergelijkingsfuncties
   hasDesktopApp: boolean;
   hasMobileApp: boolean;
@@ -20,4 +25,6 @@ export interface MusicTool {
   hasFreeVersion: boolean;
   price: string; // Prijs informatie als string (bijv. "Gratis" of "€19.99/maand")
   useEase: number; // Gebruiksvriendelijkheid score (1-5)
+=======
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
 }

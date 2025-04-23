@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
 import { MusicTool } from "../types/MusicTool";
 
 // Voorbeeld Youtube-embeds, je mag deze urls vervangen
@@ -9,6 +13,7 @@ export const musicTools: MusicTool[] = [
     websiteUrl: "https://example.com/melodymaker",
     category: ["composition"],
     audioDemo: "https://cdn.freesound.org/previews/631/631643_13274988-lq.mp3",
+<<<<<<< HEAD
     rating: 4,
     ratingsCount: 34,
     imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
@@ -21,6 +26,13 @@ export const musicTools: MusicTool[] = [
     hasFreeVersion: true,
     price: "Gratis",
     useEase: 4
+=======
+    rating: 4.5,
+    ratingsCount: 34,
+    imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+    extraInfo: "Melody Maker AI maakt gebruik van geavanceerde algoritmes om unieke melodieën te genereren afgestemd op jouw voorkeuren.",
+    videoUrl: "https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
   },
   {
     id: "2",
@@ -33,6 +45,7 @@ export const musicTools: MusicTool[] = [
     ratingsCount: 28,
     imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
     extraInfo: "LyricGen genereert songteksten in meerdere talen en stemt af op het gekozen muziekgenre.",
+<<<<<<< HEAD
     videoUrl: "https://www.youtube.com/embed/ScMzIvxBSi4?rel=0",
     // Nieuwe eigenschappen voor vergelijking
     hasDesktopApp: false,
@@ -41,6 +54,9 @@ export const musicTools: MusicTool[] = [
     hasFreeVersion: true,
     price: "honderd",
     useEase: 5
+=======
+    videoUrl: "https://www.youtube.com/embed/ScMzIvxBSi4?rel=0"
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
   },
   {
     id: "3",
@@ -53,6 +69,7 @@ export const musicTools: MusicTool[] = [
     ratingsCount: 41,
     imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
     extraInfo: "VoiceSync zet tekst razendsnel om in gezongen audio en ondersteunt verschillende vocal-eigenschappen.",
+<<<<<<< HEAD
     videoUrl: "https://www.youtube.com/embed/IUN664s7N-c?rel=0",
     // Nieuwe eigenschappen voor vergelijking
     hasDesktopApp: true,
@@ -61,6 +78,9 @@ export const musicTools: MusicTool[] = [
     hasFreeVersion: false,
     price: "€29.99/maand",
     useEase: 3
+=======
+    videoUrl: "https://www.youtube.com/embed/IUN664s7N-c?rel=0"
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
   },
   {
     id: "4",
@@ -73,6 +93,7 @@ export const musicTools: MusicTool[] = [
     ratingsCount: 19,
     imageUrl: "https://images.unsplash.com/photo-1531297484001-80022131f5a1",
     extraInfo: "Automatiseer en personaliseer je drum- en ritmepatronen. Zeer geschikt voor elektronische muziek.",
+<<<<<<< HEAD
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0",
     // Nieuwe eigenschappen voor vergelijking
     hasDesktopApp: false,
@@ -81,6 +102,9 @@ export const musicTools: MusicTool[] = [
     hasFreeVersion: true,
     price: "Gratis",
     useEase: 4
+=======
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
   },
   {
     id: "5",
@@ -93,6 +117,7 @@ export const musicTools: MusicTool[] = [
     ratingsCount: 55,
     imageUrl: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
     extraInfo: "MasterMix levert professionele masterings met één klik, direct geschikt voor streaming.",
+<<<<<<< HEAD
     videoUrl: "https://www.youtube.com/embed/ZZ5LpwO-An4?rel=0",
     // Nieuwe eigenschappen voor vergelijking
     hasDesktopApp: true,
@@ -101,6 +126,9 @@ export const musicTools: MusicTool[] = [
     hasFreeVersion: false,
     price: "€19.99/maand",
     useEase: 5
+=======
+    videoUrl: "https://www.youtube.com/embed/ZZ5LpwO-An4?rel=0"
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
   },
   {
     id: "6",
@@ -113,6 +141,7 @@ export const musicTools: MusicTool[] = [
     ratingsCount: 9,
     imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
     extraInfo: "ChordGenius helpt originele akkoordprogressies te vinden op basis van stijl en stemming.",
+<<<<<<< HEAD
     videoUrl: "https://www.youtube.com/embed/9bZkp7q19f0?rel=0",
     // Nieuwe eigenschappen voor vergelijking
     hasDesktopApp: false,
@@ -121,6 +150,9 @@ export const musicTools: MusicTool[] = [
     hasFreeVersion: true,
     price: "Gratis",
     useEase: 4
+=======
+    videoUrl: "https://www.youtube.com/embed/9bZkp7q19f0?rel=0"
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
   },
   {
     id: "7",
@@ -133,6 +165,7 @@ export const musicTools: MusicTool[] = [
     ratingsCount: 22,
     imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
     extraInfo: "Ideaal voor podcasters en producers: VocalEnhancer verwijdert ruis en verbetert helderheid.",
+<<<<<<< HEAD
     videoUrl: "https://www.youtube.com/embed/UVxU2HzPGug?rel=0",
     // Nieuwe eigenschappen voor vergelijking
     hasDesktopApp: true,
@@ -141,6 +174,9 @@ export const musicTools: MusicTool[] = [
     hasFreeVersion: false,
     price: "€24.99/maand",
     useEase: 4
+=======
+    videoUrl: "https://www.youtube.com/embed/UVxU2HzPGug?rel=0"
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
   },
   {
     id: "8",
@@ -153,6 +189,7 @@ export const musicTools: MusicTool[] = [
     ratingsCount: 14,
     imageUrl: "https://images.unsplash.com/photo-1531297484001-80022131f5a1",
     extraInfo: "Krijg direct suggesties voor de beste opbouw en structuur van je nieuwe track.",
+<<<<<<< HEAD
     videoUrl: "https://www.youtube.com/embed/jNQXAC9IVRw?rel=0",
     // Nieuwe eigenschappen voor vergelijking
     hasDesktopApp: false,
@@ -161,5 +198,8 @@ export const musicTools: MusicTool[] = [
     hasFreeVersion: true,
     price: "Gratis",
     useEase: 3
+=======
+    videoUrl: "https://www.youtube.com/embed/jNQXAC9IVRw?rel=0"
+>>>>>>> c0e9b90badd3431e53b898013e1d95db89a7375c
   }
 ];

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Music } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   return (
@@ -8,17 +9,15 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Music className="h-6 w-6 text-accent" />
-          <h1 className="font-semibold text-xl">AI Muziektools</h1>
+          <Link to="/" className="font-semibold text-xl">AI Muziektools</Link>
         </div>
-        <div>
-          <a 
-            href="https://github.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-sm text-muted-foreground hover:text-accent transition-colors"
+        <div className="flex items-center gap-6">
+          <Link 
+            to="/compare" 
+            className="text-sm hover:text-accent transition-colors"
           >
-            GitHub
-          </a>
+            Vergelijken
+          </Link>
         </div>
       </div>
     </nav>

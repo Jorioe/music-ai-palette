@@ -54,9 +54,11 @@ const RatingStars: React.FC<RatingStarsProps> = ({
   return (
     <div className="flex gap-1 items-center select-none">
       {renderStars()}
-      <span className="text-sm text-muted-foreground ml-1">
-        {rating.toFixed(1)}{ratingsCount !== undefined && ` (${ratingsCount})`}
-      </span>
+      {ratingsCount !== undefined && rating !== 0 && 
+        <span className="text-sm text-muted-foreground ml-1">
+          {rating.toFixed(1)}{` (${ratingsCount})`}
+        </span>
+      }
     </div>
   );
 };

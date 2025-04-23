@@ -15,7 +15,6 @@ const ToolDetail: React.FC = () => {
 
   const toolBase = musicTools.find((t) => t.id === id);
 
-  // Je kunt geen tool beoordelen als hij niet bestaat
   if (!toolBase) {
     return (
       <div>
@@ -35,21 +34,18 @@ const ToolDetail: React.FC = () => {
     );
   }
 
-  // Lokale state voor ratings (geen backend)
   const [userRating, setUserRating] = useState<number | undefined>(undefined);
   const [ratingsCount, setRatingsCount] = useState<number>(toolBase.ratingsCount);
   const [rating, setRating] = useState<number>(toolBase.rating);
 
   const handleRating = (newRating: number) => {
     if (!userRating) {
-      // Simuleer direct gemiddeld bijwerken
       const totalScore = rating * ratingsCount + newRating;
       const newCount = ratingsCount + 1;
       const newAverage = totalScore / newCount;
       setUserRating(newRating);
       setRatingsCount(newCount);
       setRating(newAverage);
-
       toast({
         title: "Bedankt voor je beoordeling!",
         description: `Je hebt ${toolBase.name} een ${newRating}-sterren beoordeling gegeven.`,
@@ -61,94 +57,102 @@ const ToolDetail: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col font-sans">
       <Navbar />
-      <main className="container mx-auto px-4 py-10 flex flex-col items-center">
-        <div className="max-w-2xl w-full">
+      <main className="w-full flex flex-col items-center bg-background">
+        <div className="w-full max-w-4xl mx-auto px-2 md:px-8 py-10">
+          {/* Grote header-afbeelding */}
+          <div className="relative w-full rounded-3xl overflow-hidden mb-6" style={{ minHeight: "270px" }}>
+            <img
+              src={toolBase.imageUrl}
+              alt={toolBase.name}
+              className="w-full object-cover h-64 md:h-80"
+              loading="lazy"
+              style={{ objectPosition: "center", objectFit: "cover" }}
+            />
+          </div>
+          {/* Categorieën */}
+          <div className="flex flex-wrap gap-2 mb-2">
+            {toolBase.category.map((cat) => (
+              <span
+                key={cat}
+                className="bg-muted/70 text-xs px-3 py-1 rounded-full font-medium"
+              >
+                {cat === "lyrics"
+                  ? "Songteksten"
+                  : cat === "composition"
+                  ? "Compositie"
+                  : cat === "vocals"
+                  ? "Vocals"
+                  : cat === "mastering"
+                  ? "Mastering"
+                  : cat}
+              </span>
+            ))}
+          </div>
+          {/* Titel */}
+          <h1 className="text-3xl md:text-4xl font-bold mb-1 tracking-tight">{toolBase.name}</h1>
+          {/* Beoordeling + knop */}
+          <div className="flex flex-col md:flex-row md:items-center gap-3 mb-5">
+            <RatingStars
+              rating={rating}
+              ratingsCount={ratingsCount}
+              userRating={userRating}
+              onRate={handleRating}
+              readOnly={!!userRating}
+            />
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="gap-1 self-start"
+            >
+              <a
+                href={toolBase.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Officiële site <ExternalLink size={15} />
+              </a>
+            </Button>
+          </div>
+          {!userRating && (
+            <div className="text-xs text-muted-foreground mb-2">
+              Klik op de sterren om je beoordeling te geven.
+            </div>
+          )}
+          {/* Omschrijving & extra info */}
+          <div className="mb-6 text-base text-muted-foreground leading-relaxed">
+            <p className="mb-2">{toolBase.description}</p>
+            <p className="text-sm text-foreground">{toolBase.extraInfo}</p>
+          </div>
+          {/* Grotere video */}
+          {toolBase.videoUrl && (
+            <section className="w-full mb-4">
+              <div className="flex items-center gap-2 text-muted-foreground font-semibold mb-2">
+                <Video className="w-5 h-5" />
+                Informatievideo over deze tool
+              </div>
+              <div className="w-full rounded-xl overflow-hidden bg-black" style={{ aspectRatio: "16/9", minHeight: "320px" }}>
+                <iframe
+                  src={toolBase.videoUrl}
+                  className="w-full h-full"
+                  style={{ minHeight: "320px" }}
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title={toolBase.name + " video"}
+                  loading="lazy"
+                />
+              </div>
+            </section>
+          )}
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
-            className="mb-6"
+            className="mt-8"
             onClick={() => navigate(-1)}
           >
             <ArrowLeft size={16} className="mr-1" />
             Terug
           </Button>
-          <div className="bg-card rounded-2xl shadow-sm p-6 flex flex-col md:flex-row gap-6">
-            <img
-              src={toolBase.imageUrl}
-              alt={toolBase.name}
-              className="w-full md:w-56 h-44 object-cover rounded-xl"
-              loading="lazy"
-            />
-            <div className="flex-1 flex flex-col">
-              <h1 className="text-2xl font-bold mb-2">{toolBase.name}</h1>
-              <div className="flex flex-wrap mb-3 gap-2">
-                {toolBase.category.map((cat) => (
-                  <span
-                    key={cat}
-                    className="bg-muted/70 text-xs px-2 py-1 rounded-full"
-                  >
-                    {cat === "lyrics"
-                      ? "Songteksten"
-                      : cat === "composition"
-                      ? "Compositie"
-                      : cat === "vocals"
-                      ? "Vocals"
-                      : cat === "mastering"
-                      ? "Mastering"
-                      : cat}
-                  </span>
-                ))}
-              </div>
-              <p className="mb-2 text-muted-foreground">{toolBase.description}</p>
-              <p className="mb-4 text-sm">{toolBase.extraInfo}</p>
-              {toolBase.videoUrl && (
-                <div className="mb-5 w-full min-h-44 rounded-lg overflow-hidden flex flex-col gap-2">
-                  <div className="flex items-center gap-1 mb-2 text-muted-foreground font-medium">
-                    <Video className="w-4 h-4" />
-                    Tool Video
-                  </div>
-                  <div className="aspect-video w-full rounded-lg overflow-hidden bg-black">
-                    <iframe
-                      src={toolBase.videoUrl}
-                      className="w-full h-full"
-                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      title={toolBase.name + " video"}
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-              )}
-              <div className="flex items-center gap-4 mb-5">
-                <RatingStars
-                  rating={rating}
-                  ratingsCount={ratingsCount}
-                  userRating={userRating}
-                  onRate={handleRating}
-                  readOnly={!!userRating}
-                />
-                <Button
-                  asChild
-                  variant="outline"
-                  size="sm"
-                  className="gap-1"
-                >
-                  <a
-                    href={toolBase.websiteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Officiële site <ExternalLink size={15} />
-                  </a>
-                </Button>
-              </div>
-              {!userRating && (
-                <div className="text-xs text-muted-foreground">
-                  Klik op de sterren om je beoordeling te geven.
-                </div>
-              )}
-            </div>
-          </div>
         </div>
       </main>
     </div>
@@ -156,4 +160,3 @@ const ToolDetail: React.FC = () => {
 };
 
 export default ToolDetail;
-

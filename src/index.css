@@ -1,7 +1,8 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 @layer base {
   :root {
@@ -42,10 +43,10 @@
 
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    font-feature-settings: 'ss01', 'ss02', 'cv01', 'cv02', 'cv03';
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
-  /* Custom classes for our music app */
   .card-hover {
     @apply transition-all duration-300 hover:shadow-md hover:-translate-y-1;
   }
@@ -54,5 +55,3 @@
     @apply bg-gradient-to-r from-soft-purple/30 to-soft-blue/30;
   }
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');

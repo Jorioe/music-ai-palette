@@ -9,5 +9,8 @@ export interface MusicTool {
   category: ToolCategory[];
   audioDemo: string;
   rating: number;
+  ratingsCount: number;
+  imageUrl: string;
+  extraInfo: string;
   userRating?: number;
 }

@@ -1,28 +1,18 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { MusicTool } from '../types/MusicTool';
 import AudioPlayer from './AudioPlayer';
-import RatingStars from './RatingStars';
 import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';
-import { useToast } from '@/components/ui/use-toast';
+import RatingStars from './RatingStars';
+import { useNavigate } from 'react-router-dom';
 
 interface ToolCardProps {
   tool: MusicTool;
 }
 
 const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
-  const [userRating, setUserRating] = useState<number | undefined>(tool.userRating);
-  const { toast } = useToast();
-
-  const handleRating = (rating: number) => {
-    setUserRating(rating);
-    toast({
-      title: "Beoordeling opgeslagen",
-      description: `Je hebt ${tool.name} een ${rating}-sterren beoordeling gegeven.`,
-      duration: 3000,
-    });
-  };
+  const navigate = useNavigate();
 
   const getCategoryBadge = (category: string) => {
     const colors: Record<string, string> = {
@@ -31,7 +21,6 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
       "vocals": "bg-soft-blue/50",
       "mastering": "bg-soft-green/50"
     };
-    
     return (
       <span key={category} className={`${colors[category] || "bg-gray-100"} text-xs px-2 py-1 rounded-full`}>
         {category === 'lyrics' ? 'Songteksten' : 
@@ -43,28 +32,39 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
   };
 
   return (
-    <div className="bg-card rounded-xl p-6 shadow-sm card-hover">
-      <div className="flex flex-col h-full">
-        <div className="mb-4 flex flex-wrap gap-2">
+    <div
+      className="bg-card rounded-xl p-0 overflow-hidden shadow-sm card-hover cursor-pointer flex flex-col h-full transition"
+      onClick={() => navigate(`/tool/${tool.id}`)}
+      tabIndex={0}
+      role="button"
+      aria-label={`Toon details van ${tool.name}`}
+      onKeyPress={e => {
+        if (e.key === 'Enter' || e.key === ' ') navigate(`/tool/${tool.id}`);
+      }}
+    >
+      <img
+        src={tool.imageUrl}
+        alt={tool.name}
+        className="w-full h-44 object-cover"
+        loading="lazy"
+      />
+      <div className="p-6 flex flex-col flex-grow">
+        <div className="mb-3 flex flex-wrap gap-2">
           {tool.category.map(cat => getCategoryBadge(cat))}
         </div>
-        
-        <h2 className="text-xl font-medium mb-2">{tool.name}</h2>
+        <h2 className="text-xl font-semibold mb-2">{tool.name}</h2>
         <p className="text-muted-foreground mb-4 flex-grow">{tool.description}</p>
-        
-        <div className="mb-4">
+        <div>
           <AudioPlayer audioSrc={tool.audioDemo} />
         </div>
-        
-        <div className="flex items-center justify-between mt-auto pt-4 border-t border-border">
-          <RatingStars 
-            rating={tool.rating} 
-            userRating={userRating}
-            onRate={handleRating}
+        <div className="flex items-center justify-between mt-4 pt-4 border-t border-border">
+          <RatingStars
+            rating={tool.rating}
+            ratingsCount={tool.ratingsCount}
+            readOnly
           />
-          
-          <Button asChild variant="outline" size="sm" className="gap-1">
-            <a href={tool.websiteUrl} target="_blank" rel="noopener noreferrer">
+          <Button asChild variant="outline" size="sm" className="gap-1 pointer-events-auto" onClick={e => e.stopPropagation()}>
+            <a href={tool.websiteUrl} target="_blank" rel="noopener noreferrer" tabIndex={-1}>
               Bezoek <ExternalLink size={14} />
             </a>
           </Button>

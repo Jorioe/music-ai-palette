@@ -1,6 +1,7 @@
 
 import { MusicTool } from "../types/MusicTool";
 
+// Voorbeeld Youtube-embeds, je mag deze urls vervangen
 export const musicTools: MusicTool[] = [
   {
     id: "1",
@@ -12,7 +13,8 @@ export const musicTools: MusicTool[] = [
     rating: 4.5,
     ratingsCount: 34,
     imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-    extraInfo: "Melody Maker AI maakt gebruik van geavanceerde algoritmes om unieke melodieën te genereren afgestemd op jouw voorkeuren."
+    extraInfo: "Melody Maker AI maakt gebruik van geavanceerde algoritmes om unieke melodieën te genereren afgestemd op jouw voorkeuren.",
+    videoUrl: "https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
   },
   {
     id: "2",
@@ -24,7 +26,8 @@ export const musicTools: MusicTool[] = [
     rating: 4.2,
     ratingsCount: 28,
     imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-    extraInfo: "LyricGen genereert songteksten in meerdere talen en stemt af op het gekozen muziekgenre."
+    extraInfo: "LyricGen genereert songteksten in meerdere talen en stemt af op het gekozen muziekgenre.",
+    videoUrl: "https://www.youtube.com/embed/ScMzIvxBSi4?rel=0"
   },
   {
     id: "3",
@@ -36,7 +39,8 @@ export const musicTools: MusicTool[] = [
     rating: 4.7,
     ratingsCount: 41,
     imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
-    extraInfo: "VoiceSync zet tekst razendsnel om in gezongen audio en ondersteunt verschillende vocal-eigenschappen."
+    extraInfo: "VoiceSync zet tekst razendsnel om in gezongen audio en ondersteunt verschillende vocal-eigenschappen.",
+    videoUrl: "https://www.youtube.com/embed/IUN664s7N-c?rel=0"
   },
   {
     id: "4",
@@ -48,7 +52,8 @@ export const musicTools: MusicTool[] = [
     rating: 4.3,
     ratingsCount: 19,
     imageUrl: "https://images.unsplash.com/photo-1531297484001-80022131f5a1",
-    extraInfo: "Automatiseer en personaliseer je drum- en ritmepatronen. Zeer geschikt voor elektronische muziek."
+    extraInfo: "Automatiseer en personaliseer je drum- en ritmepatronen. Zeer geschikt voor elektronische muziek.",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
   },
   {
     id: "5",
@@ -60,7 +65,8 @@ export const musicTools: MusicTool[] = [
     rating: 4.8,
     ratingsCount: 55,
     imageUrl: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
-    extraInfo: "MasterMix levert professionele masterings met één klik, direct geschikt voor streaming."
+    extraInfo: "MasterMix levert professionele masterings met één klik, direct geschikt voor streaming.",
+    videoUrl: "https://www.youtube.com/embed/ZZ5LpwO-An4?rel=0"
   },
   {
     id: "6",
@@ -72,7 +78,8 @@ export const musicTools: MusicTool[] = [
     rating: 4.1,
     ratingsCount: 9,
     imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-    extraInfo: "ChordGenius helpt originele akkoordprogressies te vinden op basis van stijl en stemming."
+    extraInfo: "ChordGenius helpt originele akkoordprogressies te vinden op basis van stijl en stemming.",
+    videoUrl: "https://www.youtube.com/embed/9bZkp7q19f0?rel=0"
   },
   {
     id: "7",
@@ -84,7 +91,8 @@ export const musicTools: MusicTool[] = [
     rating: 4.4,
     ratingsCount: 22,
     imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-    extraInfo: "Ideaal voor podcasters en producers: VocalEnhancer verwijdert ruis en verbetert helderheid."
+    extraInfo: "Ideaal voor podcasters en producers: VocalEnhancer verwijdert ruis en verbetert helderheid.",
+    videoUrl: "https://www.youtube.com/embed/UVxU2HzPGug?rel=0"
   },
   {
     id: "8",
@@ -96,6 +104,7 @@ export const musicTools: MusicTool[] = [
     rating: 4.0,
     ratingsCount: 14,
     imageUrl: "https://images.unsplash.com/photo-1531297484001-80022131f5a1",
-    extraInfo: "Krijg direct suggesties voor de beste opbouw en structuur van je nieuwe track."
+    extraInfo: "Krijg direct suggesties voor de beste opbouw en structuur van je nieuwe track.",
+    videoUrl: "https://www.youtube.com/embed/jNQXAC9IVRw?rel=0"
   }
 ];

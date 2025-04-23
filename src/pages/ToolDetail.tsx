@@ -3,24 +3,20 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import RatingStars from "../components/RatingStars";
-import AudioPlayer from "../components/AudioPlayer";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink, Video } from "lucide-react";
 import { musicTools } from "../data/musicTools";
 import { useToast } from "@/components/ui/use-toast";
 
 const ToolDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const tool = musicTools.find((t) => t.id === id);
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  // Simpel lokaal userRating, in echte app via backend opslaan
-  const [userRating, setUserRating] = useState<number | undefined>(
-    tool?.userRating
-  );
+  const toolBase = musicTools.find((t) => t.id === id);
 
-  if (!tool) {
+  // Je kunt geen tool beoordelen als hij niet bestaat
+  if (!toolBase) {
     return (
       <div>
         <Navbar />
@@ -39,13 +35,27 @@ const ToolDetail: React.FC = () => {
     );
   }
 
-  const handleRating = (rating: number) => {
-    setUserRating(rating);
-    toast({
-      title: "Bedankt voor je beoordeling!",
-      description: `Je hebt ${tool.name} een ${rating}-sterren beoordeling gegeven.`,
-      duration: 3000,
-    });
+  // Lokale state voor ratings (geen backend)
+  const [userRating, setUserRating] = useState<number | undefined>(undefined);
+  const [ratingsCount, setRatingsCount] = useState<number>(toolBase.ratingsCount);
+  const [rating, setRating] = useState<number>(toolBase.rating);
+
+  const handleRating = (newRating: number) => {
+    if (!userRating) {
+      // Simuleer direct gemiddeld bijwerken
+      const totalScore = rating * ratingsCount + newRating;
+      const newCount = ratingsCount + 1;
+      const newAverage = totalScore / newCount;
+      setUserRating(newRating);
+      setRatingsCount(newCount);
+      setRating(newAverage);
+
+      toast({
+        title: "Bedankt voor je beoordeling!",
+        description: `Je hebt ${toolBase.name} een ${newRating}-sterren beoordeling gegeven.`,
+        duration: 3000,
+      });
+    }
   };
 
   return (
@@ -64,15 +74,15 @@ const ToolDetail: React.FC = () => {
           </Button>
           <div className="bg-card rounded-2xl shadow-sm p-6 flex flex-col md:flex-row gap-6">
             <img
-              src={tool.imageUrl}
-              alt={tool.name}
+              src={toolBase.imageUrl}
+              alt={toolBase.name}
               className="w-full md:w-56 h-44 object-cover rounded-xl"
               loading="lazy"
             />
             <div className="flex-1 flex flex-col">
-              <h1 className="text-2xl font-bold mb-2">{tool.name}</h1>
+              <h1 className="text-2xl font-bold mb-2">{toolBase.name}</h1>
               <div className="flex flex-wrap mb-3 gap-2">
-                {tool.category.map((cat) => (
+                {toolBase.category.map((cat) => (
                   <span
                     key={cat}
                     className="bg-muted/70 text-xs px-2 py-1 rounded-full"
@@ -89,15 +99,30 @@ const ToolDetail: React.FC = () => {
                   </span>
                 ))}
               </div>
-              <p className="mb-2 text-muted-foreground">{tool.description}</p>
-              <p className="mb-4 text-sm">{tool.extraInfo}</p>
-              <div className="mb-5">
-                <AudioPlayer audioSrc={tool.audioDemo} />
-              </div>
+              <p className="mb-2 text-muted-foreground">{toolBase.description}</p>
+              <p className="mb-4 text-sm">{toolBase.extraInfo}</p>
+              {toolBase.videoUrl && (
+                <div className="mb-5 w-full min-h-44 rounded-lg overflow-hidden flex flex-col gap-2">
+                  <div className="flex items-center gap-1 mb-2 text-muted-foreground font-medium">
+                    <Video className="w-4 h-4" />
+                    Tool Video
+                  </div>
+                  <div className="aspect-video w-full rounded-lg overflow-hidden bg-black">
+                    <iframe
+                      src={toolBase.videoUrl}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      title={toolBase.name + " video"}
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              )}
               <div className="flex items-center gap-4 mb-5">
                 <RatingStars
-                  rating={tool.rating}
-                  ratingsCount={tool.ratingsCount}
+                  rating={rating}
+                  ratingsCount={ratingsCount}
                   userRating={userRating}
                   onRate={handleRating}
                   readOnly={!!userRating}
@@ -109,7 +134,7 @@ const ToolDetail: React.FC = () => {
                   className="gap-1"
                 >
                   <a
-                    href={tool.websiteUrl}
+                    href={toolBase.websiteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -131,3 +156,4 @@ const ToolDetail: React.FC = () => {
 };
 
 export default ToolDetail;
+

@@ -13,4 +13,5 @@ export interface MusicTool {
   imageUrl: string;
   extraInfo: string;
   userRating?: number;
+  videoUrl?: string; // OPTIONAL: je kan nu ook een videoUrl meegeven.
 }

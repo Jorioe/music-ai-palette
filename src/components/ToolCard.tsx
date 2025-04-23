@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { MusicTool } from '../types/MusicTool';
-import AudioPlayer from './AudioPlayer';
 import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';
 import RatingStars from './RatingStars';
@@ -54,9 +53,7 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
         </div>
         <h2 className="text-xl font-semibold mb-2">{tool.name}</h2>
         <p className="text-muted-foreground mb-4 flex-grow">{tool.description}</p>
-        <div>
-          <AudioPlayer audioSrc={tool.audioDemo} />
-        </div>
+        {/* Alleen gemiddelde beoordeling en aantal stemmen, geen interactieve beoordeling */}
         <div className="flex items-center justify-between mt-4 pt-4 border-t border-border">
           <RatingStars
             rating={tool.rating}
@@ -75,3 +72,4 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
 };
 
 export default ToolCard;
+

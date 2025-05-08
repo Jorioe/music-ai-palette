@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Star, StarHalf } from 'lucide-react';
 
@@ -56,7 +55,7 @@ const RatingStars: React.FC<RatingStarsProps> = ({
       {renderStars()}
       {ratingsCount !== undefined && rating !== 0 && 
         <span className="text-sm text-muted-foreground ml-1">
-          {rating.toFixed(1)}{` (${ratingsCount})`}
+          {rating.toFixed(1)}
         </span>
       }
     </div>

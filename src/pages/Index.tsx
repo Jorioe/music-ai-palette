@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import ToolCard from '../components/ToolCard';
 import CategoryFilter from '../components/CategoryFilter';
@@ -8,6 +7,11 @@ import { ToolCategory } from '../types/MusicTool';
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<ToolCategory>('all');
+
+  // Scroll naar bovenkant bij laden van de pagina
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const filteredTools = selectedCategory === 'all'
     ? musicTools
@@ -47,7 +51,8 @@ const Index = () => {
       
       <footer className="border-t border-border py-6">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} AI Muziektools • Gemaakt met ♫</p>
+          {/* <p>© {new Date().getFullYear()} AI Muziektools • Gemaakt met ♫</p> */}
+          <p>© {new Date().getFullYear()} • Gemaakt door <a href='https://i458219.hera.fontysict.net/' target='blank'>Jorian Bracke</a></p>
         </div>
       </footer>
     </div>

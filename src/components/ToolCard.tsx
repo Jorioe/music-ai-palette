@@ -22,10 +22,12 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
     };
     return (
       <span key={category} className={`${colors[category] || "bg-gray-100"} text-xs px-2 py-1 rounded-full`}>
-        {category === 'lyrics' ? 'Songteksten' : 
+        {category === 'other' ? 'Overig' :
+        category === 'stem separation' ? 'Stem isolatie' :
          category === 'composition' ? 'Compositie' :
          category === 'vocals' ? 'Vocals' :
-         category === 'mastering' ? 'Mastering' : category}
+         category === 'mastering' ? 'Mastering' :
+         category === 'music generation' ? 'Muziek genereren' : category}
       </span>
     );
   };

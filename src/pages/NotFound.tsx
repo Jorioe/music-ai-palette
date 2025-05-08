@@ -11,6 +11,11 @@ const NotFound = () => {
     );
   }, [location.pathname]);
 
+  // Scroll naar bovenkant bij laden van de pagina
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="text-center">

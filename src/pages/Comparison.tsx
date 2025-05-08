@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Check, X } from "lucide-react";
 import { musicTools } from "../data/musicTools";
 import RatingStars from "../components/RatingStars";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { HelpCircle } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -17,21 +24,107 @@ const Comparison: React.FC = () => {
   const navigate = useNavigate();
   const [selectedTools, setSelectedTools] = useState<string[]>([]);
 
+  // Scroll naar bovenkant bij laden van de pagina
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleSelectTool = (position: number, toolId: string) => {
     const newSelectedTools = [...selectedTools];
     newSelectedTools[position] = toolId;
     setSelectedTools(newSelectedTools);
   };
 
+  // Helper functie om categorie te formatteren
+  const formatCategory = (category: string) => {
+    switch(category) {
+      case "lyrics": return "Songteksten";
+      case "composition": return "Compositie";
+      case "vocals": return "Vocals";
+      case "mastering": return "Mastering";
+      case "music generation": return "Muziek genereren";
+      case "stem separation": return "Stem scheiding";
+      case "other": return "Overig";
+      default: return category;
+    }
+  };
+
   // Features comparison matrix
-  const features = [
-    { name: "AI-ondersteuning", key: "ai" },
-    { name: "Gratis versie", key: "free" },
-    { name: "Desktop app", key: "desktop" },
-    { name: "Mobile app", key: "mobile" },
-    { name: "Export opties", key: "export" },
-    { name: "Gebruiksvriendelijkheid", key: "ease" },
-  ];
+  const getFeaturesForCategory = (category: string) => {
+    switch(category) {
+      case "music generation":
+        return [
+          { name: "Type tool", key: "type", tooltip: "Bijv. Web-based, plugin, of app" },
+          { name: "Desktop app", key: "desktop", tooltip: "Beschikbaar als downloadbare app" },
+          { name: "Mobile app", key: "mobile", tooltip: "Beschikbaar voor mobiel gebruik" },
+          { name: "AI-zang inbegrepen?", key: "sing", tooltip: "Kan de tool zelf zang genereren?" },
+          { name: "Genre ondersteuning", key: "support", tooltip: "Hoeveel stijlen of genres ondersteund worden" },
+          { name: "Export opties", key: "export", tooltip: "Bestandsformaten die je kunt exporteren" },
+          { name: "Gebruiksvriendelijkheid", key: "ease", tooltip: "Hoe makkelijk is het in gebruik (1–5)" },
+          { name: "Snelheid", key: "speed", tooltip: "Hoe snel genereert het resultaten (1–5)" },
+          { name: "Commerciële licentie", key: "licence", tooltip: "Mag je de muziek commercieel gebruiken?" },
+          { name: "Gratis beschikbaar", key: "free", tooltip: "Is er een gratis versie?" },
+          { name: "Prijsmodel", key: "model", tooltip: "Bijv. gratis, abonnement, of creditsysteem" }
+        ];
+      case "mastering":
+        return [
+          { name: "Type tool", key: "type", tooltip: "Bijv. Web-based, plugin, of app" },
+          { name: "Desktop app", key: "desktop", tooltip: "Beschikbaar als downloadbare app" },
+          { name: "Mobile app", key: "mobile", tooltip: "Beschikbaar voor mobiel gebruik" },
+          { name: "AI-analyse", key: "aiAnalysis", tooltip: "Gebruikt AI voor analyse van de mix" },
+          { name: "Export opties", key: "export", tooltip: "Bestandsformaten die je kunt exporteren" },
+          { name: "Gebruiksvriendelijkheid", key: "ease", tooltip: "Hoe makkelijk is het in gebruik (1–5)" },
+          { name: "Snelheid", key: "speed", tooltip: "Hoe snel genereert het resultaten (1–5)" },
+          { name: "Gratis Demo", key: "free", tooltip: "Kun je de tool gratis uitproberen?" },
+          { name: "Prijsmodel", key: "model", tooltip: "Bijv. gratis, abonnement, of creditsysteem" }
+        ];
+      case "stem separation":
+        return [
+          { name: "Type tool", key: "type", tooltip: "Bijv. Web-based, plugin, of app" },
+          { name: "Desktop app", key: "desktop", tooltip: "Beschikbaar als downloadbare app" },
+          { name: "Mobile app", key: "mobile", tooltip: "Beschikbaar voor mobiel gebruik" },
+          { name: "Soorten stems", key: "stems", tooltip: "Kan de tool zelf zang genereren?" },
+          { name: "Export opties", key: "export", tooltip: "Bestandsformaten die je kunt exporteren" },
+          { name: "Gebruiksvriendelijkheid", key: "ease", tooltip: "Hoe makkelijk is het in gebruik (1–5)" },
+          { name: "Snelheid", key: "speed", tooltip: "Hoe snel genereert het resultaten (1–5)" },
+          { name: "Gratis beschikbaar", key: "free", tooltip: "Is er een gratis versie?" },
+          { name: "Prijsmodel", key: "model", tooltip: "Bijv. gratis, abonnement, of creditsysteem" }
+        ];
+      default:
+        return [
+          { name: "Type tool", key: "type", tooltip: "Bijv. Web-based, plugin, of app" },
+          { name: "Desktop app", key: "desktop", tooltip: "Beschikbaar als downloadbare app" },
+          { name: "Mobile app", key: "mobile", tooltip: "Beschikbaar voor mobiel gebruik" },
+          { name: "Export opties", key: "export", tooltip: "Bestandsformaten die je kunt exporteren" },
+          { name: "Gebruiksvriendelijkheid", key: "ease", tooltip: "Hoe makkelijk is het in gebruik (1–5)" },
+          { name: "Snelheid", key: "speed", tooltip: "Hoe snel genereert het resultaten (1–5)" },
+          { name: "Commerciële licentie", key: "licence", tooltip: "Mag je de muziek commercieel gebruiken?" },
+          { name: "Gratis beschikbaar", key: "free", tooltip: "Is er een gratis versie?" },
+          { name: "Prijsmodel", key: "model", tooltip: "Bijv. gratis, abonnement, of creditsysteem" }
+        ];
+    }
+  };
+
+  // Get the appropriate features based on the selected tools' categories
+  const getComparisonFeatures = () => {
+    if (!selectedTools[0] || !selectedTools[1]) return [];
+    
+    const tool1 = musicTools.find(t => t.id === selectedTools[0]);
+    const tool2 = musicTools.find(t => t.id === selectedTools[1]);
+    
+    if (!tool1 || !tool2) return [];
+    
+    // If both tools are in the same category, use that category's features
+    const commonCategory = tool1.category.find(cat => tool2.category.includes(cat));
+    if (commonCategory) {
+      return getFeaturesForCategory(commonCategory);
+    }
+    
+    // If tools are in different categories, use the default features
+    return getFeaturesForCategory("default");
+  };
+
+  const features = getComparisonFeatures();
 
   // Get feature values directly from musicTools data
   const getFeatureValue = (toolId: string, featureKey: string) => {
@@ -39,18 +132,30 @@ const Comparison: React.FC = () => {
     if (!tool) return null;
 
     switch (featureKey) {
-      case "ai":
-        return true; // All tools in musicTools are AI-powered
-      case "free":
-        return tool.hasFreeVersion;
+      case "type":
+        return tool.typeTool;
       case "desktop":
         return tool.hasDesktopApp;
       case "mobile":
         return tool.hasMobileApp;
+      case "stems":
+        return tool.whatStems;
+      case "sing":
+        return tool.hasVoice;
+      case "support":
+        return tool.genreSupport;
       case "export":
-        return tool.hasExportOptions;
+        return tool.exportOptions;
       case "ease":
         return tool.useEase;
+      case "speed":
+        return tool.speed;
+      case "licence":
+        return tool.whatLicence;
+      case "free":
+        return tool.hasFreeVersion;
+      case "model":
+        return tool.priceModel;
       default:
         return null;
     }
@@ -95,7 +200,7 @@ const Comparison: React.FC = () => {
                         value={tool.id}
                         disabled={selectedTools.includes(tool.id) && selectedTools.indexOf(tool.id) !== position}
                       >
-                        {tool.name}
+                        {tool.name} - {tool.category.map(formatCategory).join(", ")}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -114,7 +219,7 @@ const Comparison: React.FC = () => {
                             alt={tool.name}
                             className="w-full h-40 object-cover rounded-md"
                           />
-                          <h3 className="text-xl font-bold">{tool.name}</h3>
+                          {/* <h3 className="text-xl font-bold">{tool.name}</h3>
                           <div className="mb-2">
                             <RatingStars rating={tool.rating} ratingsCount={tool.ratingsCount} readOnly={true} />
                           </div>
@@ -131,7 +236,7 @@ const Comparison: React.FC = () => {
                                  cat === "mastering" ? "Mastering" : cat}
                               </span>
                             ))}
-                          </div>
+                          </div> */}
                         </div>
                       );
                     })()}
@@ -159,17 +264,45 @@ const Comparison: React.FC = () => {
                 <tbody>
                   {features.map((feature) => (
                     <tr key={feature.key} className="border-b border-border">
-                      <td className="p-4 font-medium">{feature.name}</td>
+                      <td className="p-4 font-medium flex items-center gap-1">
+                        {feature.name}
+                        {feature.tooltip && (
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <HelpCircle size={16} className="text-muted-foreground cursor-pointer" />
+                              </TooltipTrigger>
+                              <TooltipContent side="top">
+                                <p className="max-w-xs text-sm">{feature.tooltip}</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                        )}
+                      </td>
                       {[0, 1].map((position) => {
                         const toolId = selectedTools[position];
                         const featureValue = getFeatureValue(toolId, feature.key);
                         
                         return (
                           <td key={position} className="p-4 text-center">
-                            {feature.key === 'ease' ? (
+                            {feature.key === 'ease' || feature.key === 'speed' ? (
                               <div className="flex justify-center">
                                 <RatingStars rating={featureValue as number || 0} readOnly={true} />
                               </div>
+                            ) : feature.key === 'licence' || feature.key === 'sing' ? (
+                              featureValue === undefined || featureValue === null ? (
+                                "N/A"
+                              ) : typeof featureValue === "boolean" ? (
+                                featureValue ? (
+                                  <Check className="mx-auto text-green-500" />
+                                ) : (
+                                  <X className="mx-auto text-red-500" />
+                                )
+                              ) : (
+                                <span>{featureValue as string}</span>
+                              )
+                            ) : featureValue === undefined || featureValue === null ? (
+                              "N/A"
                             ) : typeof featureValue === "boolean" ? (
                               featureValue ? (
                                 <Check className="mx-auto text-green-500" />
@@ -177,7 +310,7 @@ const Comparison: React.FC = () => {
                                 <X className="mx-auto text-red-500" />
                               )
                             ) : (
-                              "N/A"
+                              <span>{featureValue as string}</span>
                             )}
                           </td>
                         );
@@ -185,31 +318,12 @@ const Comparison: React.FC = () => {
                     </tr>
                   ))}
                   <tr>
-                    <td className="p-4 font-medium">Prijs</td>
+                    <td className="p-4 font-medium">Prijsindicatie</td>
                     <td className="p-4 text-center">
                       {musicTools.find(t => t.id === selectedTools[0])?.price || "N/A"}
                     </td>
                     <td className="p-4 text-center">
                       {musicTools.find(t => t.id === selectedTools[1])?.price || "N/A"}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-medium">Beoordeling</td>
-                    <td className="p-4">
-                      <div className="flex justify-center">
-                        <RatingStars 
-                          rating={musicTools.find(t => t.id === selectedTools[0])?.rating || 0} 
-                          readOnly={true} 
-                        />
-                      </div>
-                    </td>
-                    <td className="p-4">
-                      <div className="flex justify-center">
-                        <RatingStars 
-                          rating={musicTools.find(t => t.id === selectedTools[1])?.rating || 0} 
-                          readOnly={true} 
-                        />
-                      </div>
                     </td>
                   </tr>
                 </tbody>

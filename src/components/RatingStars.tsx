@@ -37,10 +37,10 @@ const RatingStars: React.FC<RatingStarsProps> = ({
           className={`cursor-${readOnly ? 'default' : 'pointer'}`}
         >
           {halfFilled ? (
-            <StarHalf className="w-5 h-5 text-yellow-400" />
+            <StarHalf className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-yellow-400" />
           ) : (
             <Star
-              className={`w-5 h-5 ${filled ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`}
+              className={`w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 ${filled ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`}
             />
           )}
         </span>
@@ -51,10 +51,10 @@ const RatingStars: React.FC<RatingStarsProps> = ({
   };
 
   return (
-    <div className="flex gap-1 items-center select-none">
+    <div className="flex gap-0.5 sm:gap-1 items-center select-none">
       {renderStars()}
       {ratingsCount !== undefined && rating !== 0 && 
-        <span className="text-sm text-muted-foreground ml-1">
+        <span className="text-xs sm:text-sm text-muted-foreground ml-1">
           {rating.toFixed(1)}
         </span>
       }

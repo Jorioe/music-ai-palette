@@ -18,6 +18,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  SelectGroup,
+  SelectLabel,
+  SelectSeparator,
 } from "@/components/ui/select";
 
 const Comparison: React.FC = () => {
@@ -71,7 +74,6 @@ const Comparison: React.FC = () => {
           { name: "Type tool", key: "type", tooltip: "Bijv. Web-based, plugin, of app" },
           { name: "Desktop app", key: "desktop", tooltip: "Beschikbaar als downloadbare app" },
           { name: "Mobile app", key: "mobile", tooltip: "Beschikbaar voor mobiel gebruik" },
-          { name: "AI-analyse", key: "aiAnalysis", tooltip: "Gebruikt AI voor analyse van de mix" },
           { name: "Export opties", key: "export", tooltip: "Bestandsformaten die je kunt exporteren" },
           { name: "Gebruiksvriendelijkheid", key: "ease", tooltip: "Hoe makkelijk is het in gebruik (1–5)" },
           { name: "Snelheid", key: "speed", tooltip: "Hoe snel genereert het resultaten (1–5)" },
@@ -165,43 +167,59 @@ const Comparison: React.FC = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="w-full flex flex-col items-center bg-background">
-        <div className="w-full max-w-5xl mx-auto px-4 py-8">
-          <div className="flex items-center mb-8">
+        <div className="w-full max-w-5xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
+          <div className="flex items-center mb-4 sm:mb-8">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => navigate(-1)}
-              className="mr-4"
+              className="mr-2 sm:mr-4"
             >
               <ArrowLeft size={16} className="mr-1" />
               Terug
             </Button>
-            <h1 className="text-2xl md:text-3xl font-bold">Tools vergelijken</h1>
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">Tools vergelijken</h1>
           </div>
 
           {/* Tool selection */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 mb-6 sm:mb-10">
             {[0, 1].map((position) => (
-              <div key={position} className="bg-card border border-border rounded-lg p-6">
-                <h2 className="text-lg font-medium mb-4">
+              <div key={position} className="bg-card border border-border rounded-lg p-3 sm:p-6">
+                <h2 className="text-base sm:text-lg font-medium mb-3 sm:mb-4">
                   Tool {position + 1} selecteren
                 </h2>
                 <Select
                   value={selectedTools[position]}
                   onValueChange={(value) => handleSelectTool(position, value)}
                 >
-                  <SelectTrigger className="w-full mb-4">
+                  <SelectTrigger className="w-full mb-3 sm:mb-4">
                     <SelectValue placeholder="Selecteer een tool" />
                   </SelectTrigger>
                   <SelectContent>
-                    {musicTools.map((tool) => (
-                      <SelectItem
-                        key={tool.id}
-                        value={tool.id}
-                        disabled={selectedTools.includes(tool.id) && selectedTools.indexOf(tool.id) !== position}
-                      >
-                        {tool.name} - {tool.category.map(formatCategory).join(", ")}
-                      </SelectItem>
+                    {/* Group tools by category */}
+                    {(Array.from(new Set(musicTools.flatMap(tool => tool.category)))).sort().map(category => (
+                      <div key={category}>
+                        <SelectGroup>
+                          <SelectLabel className="font-medium text-sm px-2 py-1.5 bg-muted/50 rounded-md w-full">
+                            {formatCategory(category)}
+                          </SelectLabel>
+                          {musicTools
+                            .filter(tool => tool.category.includes(category))
+                            .map((tool) => (
+                              <SelectItem
+                                key={`${category}-${tool.id}`}
+                                value={tool.id}
+                                disabled={selectedTools.includes(tool.id) && selectedTools.indexOf(tool.id) !== position}
+                              >
+                                <div className="inline-flex items-center gap-2 ml-3">
+                                  <span className="w-2 h-2 rounded-full bg-primary/80 inline-block"></span>
+                                  <span>{tool.name}</span>
+                                </div>
+                              </SelectItem>
+                            ))}
+                        </SelectGroup>
+                        <SelectSeparator className="my-1.5" />
+                      </div>
                     ))}
                   </SelectContent>
                 </Select>
@@ -213,11 +231,11 @@ const Comparison: React.FC = () => {
                       if (!tool) return null;
                       
                       return (
-                        <div className="space-y-4">
+                        <div className="space-y-3 sm:space-y-4">
                           <img
                             src={tool.imageUrl}
                             alt={tool.name}
-                            className="w-full h-40 object-cover rounded-md"
+                            className="w-full h-28 sm:h-40 object-cover rounded-md"
                           />
                           {/* <h3 className="text-xl font-bold">{tool.name}</h3>
                           <div className="mb-2">
@@ -248,45 +266,35 @@ const Comparison: React.FC = () => {
 
           {/* Comparison table */}
           {selectedTools.length === 2 && selectedTools[0] && selectedTools[1] && (
-            <div className="border border-border rounded-lg overflow-hidden">
-              <table className="w-full">
-                <thead>
-                  <tr className="bg-muted/50">
-                    <th className="text-left p-4 border-b border-border">Eigenschappen</th>
-                    <th className="p-4 border-b border-border">
-                      {musicTools.find(t => t.id === selectedTools[0])?.name}
-                    </th>
-                    <th className="p-4 border-b border-border">
-                      {musicTools.find(t => t.id === selectedTools[1])?.name}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {features.map((feature) => (
-                    <tr key={feature.key} className="border-b border-border">
-                      <td className="p-4 font-medium flex items-center gap-1">
-                        {feature.name}
-                        {feature.tooltip && (
-                          <TooltipProvider>
-                            <Tooltip>
-                              <TooltipTrigger asChild>
-                                <HelpCircle size={16} className="text-muted-foreground cursor-pointer" />
-                              </TooltipTrigger>
-                              <TooltipContent side="top">
-                                <p className="max-w-xs text-sm">{feature.tooltip}</p>
-                              </TooltipContent>
-                            </Tooltip>
-                          </TooltipProvider>
-                        )}
-                      </td>
-                      {[0, 1].map((position) => {
-                        const toolId = selectedTools[position];
-                        const featureValue = getFeatureValue(toolId, feature.key);
-                        
-                        return (
-                          <td key={position} className="p-4 text-center">
-                            {feature.key === 'ease' || feature.key === 'speed' ? (
-                              <div className="flex justify-center">
+            <div className="border border-border rounded-lg">
+              <div className="overflow-x-auto sm:overflow-visible">
+                <table className="w-full table-fixed">
+                  <thead>
+                    <tr className="bg-muted/50">
+                      <th className="p-2 sm:p-4 border-b border-border w-[30%]">
+                        <div className="truncate text-right">
+                          {musicTools.find(t => t.id === selectedTools[0])?.name}
+                        </div>
+                      </th>
+                      <th className="text-center p-2 sm:p-4 border-b border-border w-[40%]">Eigenschappen</th>
+                      <th className="p-2 sm:p-4 border-b border-border w-[30%]">
+                        <div className="truncate text-left">
+                          {musicTools.find(t => t.id === selectedTools[1])?.name}
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {features.map((feature) => (
+                      <tr key={feature.key} className="border-b border-border">
+                        {/* Tool 1 values - Left aligned */}
+                        <td className="p-2 sm:p-4 text-right">
+                          {(() => {
+                            const toolId = selectedTools[0];
+                            const featureValue = getFeatureValue(toolId, feature.key);
+                            
+                            return feature.key === 'ease' || feature.key === 'speed' ? (
+                              <div className="flex justify-end">
                                 <RatingStars rating={featureValue as number || 0} readOnly={true} />
                               </div>
                             ) : feature.key === 'licence' || feature.key === 'sing' ? (
@@ -294,45 +302,100 @@ const Comparison: React.FC = () => {
                                 "N/A"
                               ) : typeof featureValue === "boolean" ? (
                                 featureValue ? (
-                                  <Check className="mx-auto text-green-500" />
+                                  <Check className="ml-auto text-green-500" size={16} />
                                 ) : (
-                                  <X className="mx-auto text-red-500" />
+                                  <X className="ml-auto text-red-500" size={16} />
                                 )
                               ) : (
-                                <span>{featureValue as string}</span>
+                                <span className="text-xs sm:text-sm md:text-base break-words">{featureValue as string}</span>
                               )
                             ) : featureValue === undefined || featureValue === null ? (
                               "N/A"
                             ) : typeof featureValue === "boolean" ? (
                               featureValue ? (
-                                <Check className="mx-auto text-green-500" />
+                                <Check className="ml-auto text-green-500" size={16} />
                               ) : (
-                                <X className="mx-auto text-red-500" />
+                                <X className="ml-auto text-red-500" size={16} />
                               )
                             ) : (
-                              <span>{featureValue as string}</span>
+                              <span className="text-xs sm:text-sm md:text-base break-words">{featureValue as string}</span>
+                            );
+                          })()}
+                        </td>
+                        
+                        {/* Feature name - Center */}
+                        <td className="p-2 sm:p-4 font-medium text-center">
+                          <div className="flex items-center justify-center gap-1">
+                            <span>{feature.name}</span>
+                            {feature.tooltip && (
+                              <TooltipProvider>
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <HelpCircle size={14} className="flex-shrink-0 text-muted-foreground cursor-pointer" />
+                                  </TooltipTrigger>
+                                  <TooltipContent side="top">
+                                    <p className="max-w-xs text-xs sm:text-sm">{feature.tooltip}</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
                             )}
-                          </td>
-                        );
-                      })}
+                          </div>
+                        </td>
+                        
+                        {/* Tool 2 values - Right aligned */}
+                        <td className="p-2 sm:p-4 text-left">
+                          {(() => {
+                            const toolId = selectedTools[1];
+                            const featureValue = getFeatureValue(toolId, feature.key);
+                            
+                            return feature.key === 'ease' || feature.key === 'speed' ? (
+                              <div className="flex justify-start">
+                                <RatingStars rating={featureValue as number || 0} readOnly={true} />
+                              </div>
+                            ) : feature.key === 'licence' || feature.key === 'sing' ? (
+                              featureValue === undefined || featureValue === null ? (
+                                "N/A"
+                              ) : typeof featureValue === "boolean" ? (
+                                featureValue ? (
+                                  <Check className="mr-auto text-green-500" size={16} />
+                                ) : (
+                                  <X className="mr-auto text-red-500" size={16} />
+                                )
+                              ) : (
+                                <span className="text-xs sm:text-sm md:text-base break-words">{featureValue as string}</span>
+                              )
+                            ) : featureValue === undefined || featureValue === null ? (
+                              "N/A"
+                            ) : typeof featureValue === "boolean" ? (
+                              featureValue ? (
+                                <Check className="mr-auto text-green-500" size={16} />
+                              ) : (
+                                <X className="mr-auto text-red-500" size={16} />
+                              )
+                            ) : (
+                              <span className="text-xs sm:text-sm md:text-base break-words">{featureValue as string}</span>
+                            );
+                          })()}
+                        </td>
+                      </tr>
+                    ))}
+                    <tr>
+                      <td className="p-2 sm:p-4 text-right text-xs sm:text-sm md:text-base">
+                        {musicTools.find(t => t.id === selectedTools[0])?.price || "N/A"}
+                      </td>
+                      <td className="p-2 sm:p-4 font-medium text-center">Prijsindicatie</td>
+                      <td className="p-2 sm:p-4 text-left text-xs sm:text-sm md:text-base">
+                        {musicTools.find(t => t.id === selectedTools[1])?.price || "N/A"}
+                      </td>
                     </tr>
-                  ))}
-                  <tr>
-                    <td className="p-4 font-medium">Prijsindicatie</td>
-                    <td className="p-4 text-center">
-                      {musicTools.find(t => t.id === selectedTools[0])?.price || "N/A"}
-                    </td>
-                    <td className="p-4 text-center">
-                      {musicTools.find(t => t.id === selectedTools[1])?.price || "N/A"}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
 
           {(!selectedTools[0] || !selectedTools[1]) && (
-            <div className="text-center py-8 text-muted-foreground">
+            <div className="text-center py-4 sm:py-8 text-muted-foreground text-sm sm:text-base">
               Selecteer twee tools om ze te vergelijken
             </div>
           )}

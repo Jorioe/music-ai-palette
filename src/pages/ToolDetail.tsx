@@ -112,9 +112,9 @@ const ToolDetail: React.FC = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="w-full flex flex-col items-center bg-background">
-        <div className="w-full max-w-5xl mx-auto px-2 md:px-8 py-6">
+        <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6">
           {/* Terug knop boven de afbeelding */}
-          <div className="mb-4">
+          <div className="mb-3 sm:mb-4">
             <Button
               variant="ghost"
               size="sm"
@@ -126,11 +126,11 @@ const ToolDetail: React.FC = () => {
           </div>
 
           {/* Grote header-afbeelding */}
-          <div className="relative w-full rounded-3xl overflow-hidden mb-6" style={{ minHeight: "300px" }}>
+          <div className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden mb-4 sm:mb-6" style={{ minHeight: "200px" }}>
             <img
               src={toolBase.imageUrl}
               alt={toolBase.name}
-              className="w-full object-cover h-72 md:h-96"
+              className="w-full object-cover h-52 sm:h-72 md:h-96"
               loading="lazy"
               style={{ objectPosition: "center", objectFit: "cover" }}
             />
@@ -141,7 +141,7 @@ const ToolDetail: React.FC = () => {
             {toolBase.category.map((cat) => (
               <span
                 key={cat}
-                className="bg-muted/70 text-xs px-3 py-1 rounded-full font-medium"
+                className="bg-muted/70 text-xs px-2 sm:px-3 py-1 rounded-full font-medium"
               >
                 {cat === "other"
                   ? "Overig"
@@ -161,10 +161,10 @@ const ToolDetail: React.FC = () => {
           </div>
           
           {/* Titel */}
-          <h1 className="text-3xl md:text-4xl font-bold mb-1 tracking-tight">{toolBase.name}</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 tracking-tight">{toolBase.name}</h1>
           
           {/* Beoordeling + knop */}
-          <div className="flex items-center gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
             <RatingStars
               rating={rating}
               ratingsCount={ratingsCount}
@@ -174,7 +174,7 @@ const ToolDetail: React.FC = () => {
               asChild
               variant="outline"
               size="sm"
-              className="gap-1 self-start"
+              className="gap-1 self-start mt-1 sm:mt-0"
             >
               <a
                 href={toolBase.websiteUrl}
@@ -187,17 +187,17 @@ const ToolDetail: React.FC = () => {
           </div>
           
           {/* Uitgebreide beschrijving */}
-          <div className="mb-8">
+          <div className="mb-6 sm:mb-8">
             {toolBase.descriptionBlocks ? (
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {toolBase.descriptionBlocks.map((block, index) => {
                   if (block.type === 'paragraph') {
-                    return <p key={index}>{block.content as string}</p>;
+                    return <p key={index} className="text-sm sm:text-base">{block.content as string}</p>;
                   } else if (block.type === 'heading') {
                     return <h3 key={index} className="font-bold text-lg">{block.content as string}</h3>;
                   } else if (block.type === 'list') {
                     return (
-                      <ul key={index} className="list-disc pl-5 space-y-2">
+                      <ul key={index} className="list-disc pl-5 space-y-1 sm:space-y-2 text-sm sm:text-base">
                         {(block.content as string[]).map((item, itemIndex) => (
                           <li key={itemIndex}>{item}</li>
                         ))}
@@ -205,90 +205,69 @@ const ToolDetail: React.FC = () => {
                     );
                   } else if (block.type === 'image') {
                     return (
-                      <figure key={index} className="my-4">
-                        <img 
-                          src={block.content as string} 
-                          alt={block.alt || `Afbeelding ${index + 1}`} 
-                          className="rounded-lg w-full object-cover max-h-[400px]"
-                        />
-                        {block.caption && (
-                          <figcaption className="text-sm text-muted-foreground mt-2 text-center italic">
-                            {block.caption}
-                          </figcaption>
-                        )}
-                      </figure>
+                      <div key={index} className="my-6 sm:my-10">
+                        <figure className="my-4">
+                          <img 
+                            src={block.content as string} 
+                            alt={block.alt || `Afbeelding ${index + 1}`} 
+                            className="rounded-lg w-full sm:w-4/5 md:w-3/4 object-cover max-h-[300px] sm:max-h-[400px] mx-auto"
+                          />
+                          {block.caption && (
+                            <figcaption className="text-xs sm:text-sm text-muted-foreground mt-2 text-center italic">
+                              {block.caption}
+                            </figcaption>
+                          )}
+                        </figure>
+                      </div>
                     );
                   }
                   return null;
                 })}
               </div>
             ) : (
-              <p>{toolBase.longDescription}</p>
+              <p className="text-sm sm:text-base">{toolBase.longDescription}</p>
             )}
           </div>
 
           {/* Belangrijkste kenmerken */}
-          <div className="mb-8">
-            <h2 className="text-xl font-bold mb-4">Belangrijkste kenmerken</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-card p-4 rounded-lg border border-border">
+          <div className="mb-6 sm:mb-8">
+            <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Belangrijkste kenmerken</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+              <div className="bg-card p-3 sm:p-4 rounded-lg border border-border">
                 <h3 className="font-medium mb-2">Type & Platform</h3>
-                <ul className="space-y-2 text-sm">
+                <ul className="space-y-1 sm:space-y-2 text-sm">
                   <li>Type: {toolBase.typeTool}</li>
                   <li>Desktop app: {toolBase.hasDesktopApp ? "Ja" : "Nee"}</li>
                   <li>Mobile app: {toolBase.hasMobileApp ? "Ja" : "Nee"}</li>
                 </ul>
               </div>
-              {/* <div className="bg-card p-4 rounded-lg border border-border">
-                <h3 className="font-medium mb-2">Functionaliteit</h3>
-                <ul className="space-y-2 text-sm">
-                  {toolBase.category.includes("music generation") && (
-                    <li>AI-zang: {toolBase.hasVoice ? "Ja" : "Nee"}</li>
-                  )}
-                  {toolBase.category.includes("music generation") && (
-                    <li>Genre ondersteuning: {toolBase.genreSupport}</li>
-                  )}
-                  {toolBase.category.includes("mastering") && (
-                    <li>AI-analyse: Ja</li>
-                  )}
-                  <li>Export opties: {toolBase.exportOptions}</li>
-                </ul>
-              </div> */}
-              <div className="bg-card p-4 rounded-lg border border-border">
+              <div className="bg-card p-3 sm:p-4 rounded-lg border border-border">
                 <h3 className="font-medium mb-2">Gebruik</h3>
-                <ul className="space-y-2 text-sm">
+                <ul className="space-y-1 sm:space-y-2 text-sm">
                   <li>Gebruiksvriendelijkheid: <RatingStars rating={toolBase.useEase} readOnly={true} /></li>
                   <li>Snelheid: <RatingStars rating={toolBase.speed} readOnly={true} /></li>
                 </ul>
               </div>
-              {/* <div className="bg-card p-4 rounded-lg border border-border">
-                <h3 className="font-medium mb-2">Licentie</h3>
-                <ul className="space-y-2 text-sm">
-                  <li>Commerciële licentie: {typeof toolBase.whatLicence === "boolean" ? (toolBase.whatLicence ? "Ja" : "Nee") : toolBase.whatLicence}</li>
-                  <li>Gratis versie: {toolBase.hasFreeVersion ? "Ja" : "Nee"}</li>
-                  <li>Prijsmodel: {toolBase.priceModel}</li>
-                </ul>
-              </div> */}
             </div>
           </div>
 
           {/* Abonnementen */}
-          <div className="mb-8">
-            <h2 className="text-xl font-bold mb-4">Abonnementen</h2>
+          <div className="mb-6 sm:mb-8">
+            <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Abonnementen</h2>
             {toolBase.subscriptionInfo && toolBase.subscriptionInfo.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3 sm:gap-4">
                 {toolBase.subscriptionInfo.map((subscription, index) => (
-                  <div key={index} className="bg-card p-6 rounded-lg border border-border hover:border-primary/50 transition-colors">
+                  <div key={index} className="bg-card p-4 sm:p-6 rounded-lg border border-border hover:border-primary/50 transition-colors">
                     <div className="flex flex-col h-full">
-                      <div className="mb-4">
-                        <h3 className="text-lg font-semibold text-primary">{subscription.name}</h3>
-                        <p className="text-2xl font-bold mt-1">{subscription.price}</p>
+                      <div className="mb-3 sm:mb-4">
+                        <h3 className="text-base sm:text-lg font-semibold text-primary">{subscription.name}</h3>
+                        <p className="text-xl sm:text-2xl font-bold mt-1">{subscription.price}</p>
                       </div>
-                      <ul className="space-y-3 flex-grow">
+                      <ul className="space-y-2 sm:space-y-3 flex-grow">
                         {subscription.features.map((feature, featureIndex) => (
                           <li key={featureIndex} className="flex items-center gap-2">
                             <span className="text-primary">•</span>
-                            <span className="text-sm">{feature}</span>
+                            <span className="text-xs sm:text-sm">{feature}</span>
                           </li>
                         ))}
                       </ul>
@@ -297,36 +276,36 @@ const ToolDetail: React.FC = () => {
                 ))}
               </div>
             ) : (
-              <div className="bg-card p-4 rounded-lg border border-border">
-                <p className="text-muted-foreground">Geen abonnement informatie beschikbaar.</p>
+              <div className="bg-card p-3 sm:p-4 rounded-lg border border-border">
+                <p className="text-sm text-muted-foreground">Geen abonnement informatie beschikbaar.</p>
               </div>
             )}
           </div>
 
           {/* Extra informatie */}
-          <div className="mb-8">
-            <p className="mb-4">{toolBase.extraInfo}</p>
-          </div>
+          {toolBase.extraInfo && (
+            <div className="mb-6 sm:mb-8">
+              <p className="text-sm sm:text-base mb-4">{toolBase.extraInfo}</p>
+            </div>
+          )}
           
           {/* Mijn review/ervaringen (persoonlijk stukje) */}
-          <section className="mb-10 bg-muted/30 p-6 rounded-xl border border-border">
-            <h2 className="text-xl font-bold mb-3 flex items-center">
+          <section className="mb-8 sm:mb-10 bg-muted/30 p-4 sm:p-6 rounded-xl border border-border">
+            <h2 className="text-lg sm:text-xl font-bold mb-3 flex items-center">
               <User className="mr-2" size={18} /> 
               Mijn ervaring met {toolBase.name}
             </h2>
-            {/* <p className="mb-4 italic">
-              "{toolBase.review}"
-            </p> */}
+            
             {toolBase.reviewBlocks ? (
-              <div className="space-y-4 mb-4">
+              <div className="space-y-3 sm:space-y-4 mb-4">
                 {toolBase.reviewBlocks.map((block, index) => {
                   if (block.type === 'paragraph') {
-                    return <p key={index}>{block.content as string}</p>;
+                    return <p key={index} className="text-sm sm:text-base">{block.content as string}</p>;
                   } else if (block.type === 'heading') {
-                    return <h3 key={index} className="font-bold text-lg">{block.content as string}</h3>;
+                    return <h3 key={index} className="font-bold text-base sm:text-lg">{block.content as string}</h3>;
                   } else if (block.type === 'list') {
                     return (
-                      <ul key={index} className="list-disc pl-5 space-y-2">
+                      <ul key={index} className="list-disc pl-5 space-y-1 sm:space-y-2 text-sm sm:text-base">
                         {(block.content as string[]).map((item, itemIndex) => (
                           <li key={itemIndex}>{item}</li>
                         ))}
@@ -334,18 +313,20 @@ const ToolDetail: React.FC = () => {
                     );
                   } else if (block.type === 'image') {
                     return (
-                      <figure key={index} className="py-2">
-                        <img 
-                          src={block.content as string} 
-                          alt={block.alt || `Afbeelding ${index + 1}`} 
-                          className="rounded-lg w-3/4 object-cover max-h-[400px] mx-auto"
-                        />
-                        {block.caption && (
-                          <figcaption className="text-sm text-muted-foreground mt-2 text-center italic">
-                            {block.caption}
-                          </figcaption>
-                        )}
-                      </figure>
+                      <div key={index} className="my-6 sm:my-10">
+                        <figure className="my-4">
+                          <img 
+                            src={block.content as string} 
+                            alt={block.alt || `Afbeelding ${index + 1}`} 
+                            className="rounded-lg w-full sm:w-4/5 md:w-3/4 object-cover max-h-[300px] sm:max-h-[400px] mx-auto"
+                          />
+                          {block.caption && (
+                            <figcaption className="text-xs sm:text-sm text-muted-foreground mt-2 text-center italic">
+                              {block.caption}
+                            </figcaption>
+                          )}
+                        </figure>
+                      </div>
                     );
                   }
                   return null;
@@ -354,46 +335,46 @@ const ToolDetail: React.FC = () => {
             ) : (
               <>
                 {toolBase.review && (
-                  <p className="mb-4">
+                  <p className="text-sm sm:text-base mb-4">
                     {toolBase.review}
                   </p>
                 )}
                 {toolBase.reviewDesc && (
-                  <p className="mb-0">
+                  <p className="text-sm sm:text-base mb-0">
                     {toolBase.reviewDesc}
                   </p>
                 )}
               </>
             )}
             
-            <div className="mt-5">
+            <div className="mt-4 sm:mt-5">
               {/* Audioplayer */}
               {toolBase.audioDemo && (
-                <section className="w-full mb-5">
-                  <div className="flex items-center gap-2 text-muted-foreground font-semibold mb-3">
-                    <Volume2 className="w-5 h-5" />
-                    <span className="text-sm">{toolBase.demoText}</span>
+                <section className="w-full mb-4 sm:mb-5">
+                  <div className="flex items-center gap-2 text-muted-foreground font-semibold mb-2 sm:mb-3">
+                    <Volume2 className="w-4 sm:w-5 h-4 sm:h-5" />
+                    <span className="text-xs sm:text-sm">{toolBase.demoText}</span>
                   </div>
                   <AudioPlayer audioSrc={toolBase.audioDemo} />
                 </section>
               )}
               {(toolBase.audioDemo2 || toolBase.audioDemo3) && (
-                <section className="w-full mb-5">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <section className="w-full mb-4 sm:mb-5">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
                     {toolBase.audioDemo2 && toolBase.demoText2 && (
                       <div>
-                        <div className="flex items-center gap-2 text-muted-foreground font-semibold mb-3">
-                          <Volume2 className="w-5 h-5" />
-                          <span className="text-sm">{toolBase.demoText2}</span>
+                        <div className="flex items-center gap-2 text-muted-foreground font-semibold mb-2 sm:mb-3">
+                          <Volume2 className="w-4 sm:w-5 h-4 sm:h-5" />
+                          <span className="text-xs sm:text-sm">{toolBase.demoText2}</span>
                         </div>
                         <AudioPlayer audioSrc={toolBase.audioDemo2} />
                       </div>
                     )}
                     {toolBase.audioDemo3 && toolBase.demoText3 && (
                       <div>
-                        <div className="flex items-center gap-2 text-muted-foreground font-semibold mb-3">
-                          <Volume2 className="w-5 h-5" />
-                          <span className="text-sm">{toolBase.demoText3}</span>
+                        <div className="flex items-center gap-2 text-muted-foreground font-semibold mb-2 sm:mb-3">
+                          <Volume2 className="w-4 sm:w-5 h-4 sm:h-5" />
+                          <span className="text-xs sm:text-sm">{toolBase.demoText3}</span>
                         </div>
                         <AudioPlayer audioSrc={toolBase.audioDemo3} />
                       </div>
@@ -403,23 +384,23 @@ const ToolDetail: React.FC = () => {
               )}
             </div>
             <div className="flex items-center">
-              <span className="mr-2 font-medium">Mijn beoordeling:</span>
+              <span className="text-sm sm:text-base mr-2 font-medium">Mijn beoordeling:</span>
               <RatingStars rating={Math.round(toolBase.rating * 2) / 2} readOnly={true} />
             </div>
           </section>
           
           {/* Video */}
           {toolBase.videoUrl && (
-            <section className="w-full mb-10">
-              <div className="flex items-center gap-2 text-muted-foreground font-semibold mb-3">
-                <Video className="w-5 h-5" />
-                Video tutorial
+            <section className="w-full mb-8 sm:mb-10">
+              <div className="flex items-center gap-2 text-muted-foreground font-semibold mb-2 sm:mb-3">
+                <Video className="w-4 sm:w-5 h-4 sm:h-5" />
+                <span className="text-xs sm:text-sm">Video tutorial</span>
               </div>
-              <div className="w-full rounded-xl overflow-hidden bg-black" style={{ aspectRatio: "16/9", minHeight: "400px" }}>
+              <div className="w-full rounded-lg sm:rounded-xl overflow-hidden bg-black" style={{ aspectRatio: "16/9", minHeight: "200px" }}>
                 <iframe
                   src={toolBase.videoUrl}
                   className="w-full h-full"
-                  style={{ minHeight: "400px" }}
+                  style={{ minHeight: "200px", maxHeight: "80vh" }}
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   title={toolBase.name + " video"}
@@ -428,93 +409,6 @@ const ToolDetail: React.FC = () => {
               </div>
             </section>
           )}
-
-          {/* Reviews sectie */}
-          {/* <section className="my-10">
-            <h2 className="text-2xl font-bold mb-6">Reviews</h2> */}
-            
-            {/* Bestaande reviews */}
-            {/* {reviews.length > 0 ? (
-              <div className="space-y-6 mb-10">
-                {reviews.map((review, index) => (
-                  <div key={index} className="bg-card p-4 rounded-lg border border-border">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-medium">{review.name}</h3>
-                      <span className="text-sm text-muted-foreground">{review.date}</span>
-                    </div>
-                    <RatingStars rating={review.rating} readOnly={true} />
-                    <p className="mt-2 text-muted-foreground">{review.comment}</p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="text-muted-foreground mb-6">Nog geen reviews. Wees de eerste om een review te schrijven!</p>
-            )} */}
-            
-            {/* Review formulier */}
-            {/* <div className="bg-card border border-border p-6 rounded-lg">
-              <h3 className="text-lg font-bold mb-4">Schrijf een review</h3>
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmitReview)} className="space-y-4">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Naam</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Je naam" {...field} />
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="rating"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Beoordeling</FormLabel>
-                        <FormControl>
-                          <div>
-                            <RatingStars 
-                              rating={field.value} 
-                              onRate={(value) => field.onChange(value)} 
-                              readOnly={false} 
-                            />
-                            {form.formState.errors.rating && (
-                              <p className="text-sm text-red-500 mt-1">Geef een beoordeling</p>
-                            )}
-                          </div>
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="comment"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Review</FormLabel>
-                        <FormControl>
-                          <Textarea 
-                            placeholder="Deel je ervaring met deze tool..." 
-                            className="min-h-[100px]" 
-                            {...field} 
-                          />
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <Button type="submit" className="w-full md:w-auto">
-                    Review plaatsen
-                  </Button>
-                </form>
-              </Form>
-            </div> */}
-          {/* </section> */}
         </div>
       </main>
     </div>

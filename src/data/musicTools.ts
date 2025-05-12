@@ -523,6 +523,20 @@ export const musicTools: MusicTool[] = [
     name: "Lalal.ai",
     description: "Een AI-tool die vocals en instrumenten uit nummers scheidt, handig voor remixing en karaoke.",
     longDescription: "Lalal.ai is een AI-tool die vocalen en instrumenten van bestaande tracks scheidt. Het is handig voor remixing en karaoke, en biedt gebruikers de mogelijkheid om hun eigen versies van populaire nummers te maken.",
+    reviewBlocks: [
+      {
+        type: 'paragraph',
+        content: 'Ik heb LALAL.AI getest met het nummer Beetje van mij van Antoon. Ik wilde de vocal loshalen van de instrumental. Het resultaat was erg netjes. De stem werd goed gescheiden van de muziek. De instrumental die overbleef klonk goed. Je hoort nog wel dat het geen perfecte scheiding is. Je merkt dat de tool nog moeite heeft met frequenties die overlappen.'
+      },
+      {
+        type: 'paragraph',
+        content: 'Daarbuiten nog het feit dat je $22 betaald voor 90 minuten muziekverwerking. Ook kan je de gescheiden stems niet downloaden zonder dat je hebt betaald. Dat vind ik persoonlijk belachelijk omdat er gratis alternatieven zijn die net zo goed zijn of zelfs beter.'
+      },
+      {
+        type: 'paragraph',
+        content: 'Luister hieronder naar het originele nummer en de gescheiden vocals en instrumenten.'
+      }
+    ],
     websiteUrl: "https://www.lalal.ai/",
     category: ["stem separation"],
     audioDemo: "/audio/Antoon-BeetjevanMij.mp3",
@@ -530,7 +544,7 @@ export const musicTools: MusicTool[] = [
     audioDemo3: "/audio/bvm-lala-ins.mp3",
     demoText: "Luister naar het origineel (Antoon - Beetje van Mij)",
     demoText2: "Luister naar de vocals",
-    demoText3: "Luister naar de instrumenten",
+    demoText3: "Luister naar de instrumental",
     rating: 3.5,
     ratingsCount: 14,
     imageUrl: "/img/lalalai.jpg",
@@ -615,7 +629,7 @@ export const musicTools: MusicTool[] = [
     audioDemo3: "/audio/bvm-vr-ins.mp3",
     demoText: "Het origineel (Antoon - Beetje van Mij)",
     demoText2: "De gescheiden vocals",
-    demoText3: "De gescheiden instrumenten",
+    demoText3: "De gescheiden instrumental",
     rating: 4.5,
     ratingsCount: 14,
     imageUrl: "/img/vocalremover.jpg",

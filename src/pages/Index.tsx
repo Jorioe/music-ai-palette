@@ -27,7 +27,7 @@ const Index = () => {
             AI Tools voor Muziekproductie
           </h1>
           <p className="text-muted-foreground">
-            Ontdek de nieuwste AI-tools die je helpen bij het maken, produceren en masteren van muziek.
+            Ontdek de nieuwste AI-tools die je helpen bij het maken en masteren van muziek.
           </p>
         </div>
         

@@ -1,4 +1,4 @@
-export type ToolCategory = 'music generation' | 'mastering' | 'stem separation' | 'other';
+export type ToolCategory = 'music generation' | 'mastering' | 'stem separation' | 'other' | 'all';
 
 // Nieuwe types voor beschrijvingsblokken
 export type DescriptionBlockType = 'paragraph' | 'list' | 'heading' | 'image';

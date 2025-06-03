@@ -38,7 +38,7 @@ The purpose of this application is to provide a centralized resource where users
 ```bash
 # Clone the repository
 git clone https://github.com/Jorioe/music-ai-palette
-cd ai-music-plugins
+cd music-ai-palette
 
 # Install dependencies
 npm install
@@ -72,11 +72,11 @@ The application is configured using standard Vite, TypeScript, and Tailwind conf
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue.svg)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-5.4-purple.svg)](https://vitejs.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC.svg)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 ## Created By
 

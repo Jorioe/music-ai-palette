@@ -85,7 +85,7 @@ const Comparison: React.FC = () => {
           { name: "Type tool", key: "type", tooltip: "Bijv. Web-based, plugin, of app" },
           { name: "Desktop app", key: "desktop", tooltip: "Beschikbaar als downloadbare app" },
           { name: "Mobile app", key: "mobile", tooltip: "Beschikbaar voor mobiel gebruik" },
-          { name: "Soorten stems", key: "stems", tooltip: "Kan de tool zelf zang genereren?" },
+          { name: "Soorten stems", key: "stems", tooltip: "Welke stems kun je exporteren?" },
           { name: "Export opties", key: "export", tooltip: "Bestandsformaten die je kunt exporteren" },
           { name: "Gebruiksvriendelijkheid", key: "ease", tooltip: "Hoe makkelijk is het in gebruik (1–5)" },
           { name: "Snelheid", key: "speed", tooltip: "Hoe snel genereert het resultaten (1–5)" },

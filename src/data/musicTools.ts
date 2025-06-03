@@ -197,7 +197,7 @@ export const musicTools: MusicTool[] = [
     hasDesktopApp: false,
     hasMobileApp: false,
     hasVoice: false,
-    genreSupport: "kaas",
+    genreSupport: "Breed",
     exportOptions: "MP3, (WAV & stems vanaf $39/maand)",
     useEase: 4,
     speed: 4,

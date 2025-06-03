@@ -1,73 +1,83 @@
-# Welcome to your Lovable project
+# AI Music Plugins
 
-## Project info
+## Overview
 
-**URL**: https://lovable.dev/projects/ae41e55f-1ca8-4328-bf47-548f01dd2637
+AI Music Plugins is a comprehensive catalog of AI tools for music production and creation. The platform helps musicians, producers, and content creators discover and compare various AI tools for generating, mastering, and manipulating music.
 
-## How can I edit this code?
+## Purpose
 
-There are several ways of editing your application.
+The purpose of this application is to provide a centralized resource where users can explore different AI music tools, compare their features, pricing, and capabilities, and make informed decisions about which tools best suit their creative needs.
 
-**Use Lovable**
+## Key Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ae41e55f-1ca8-4328-bf47-548f01dd2637) and start prompting.
+- **Tool Catalog**: Browse a curated collection of AI music tools with detailed information
+- **Category Filtering**: Filter tools by categories such as music generation, mastering, and stem separation
+- **Detailed Reviews**: Read comprehensive reviews with audio examples
+- **Tool Comparison**: Compare multiple tools side-by-side to evaluate features
+- **Responsive Design**: Optimized for both desktop and mobile devices
+- **Audio Demos**: Listen to samples created with each AI tool
 
-Changes made via Lovable will be committed automatically to this repo.
+## Technologies Used
 
-**Use your preferred IDE**
+- **Frontend**:
+  - React 18
+  - TypeScript
+  - Tailwind CSS
+  - Shadcn UI Components
+  - React Router
+  - React Hook Form
+  - React Query
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **Build Tools**:
+  - Vite
+  - PostCSS
+  - ESLint
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Installation
 
-Follow these steps:
+```bash
+# Clone the repository
+git clone https://github.com/Jorioe/music-ai-palette
+cd ai-music-plugins
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Install dependencies
+npm install
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Configuration
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The application is configured using standard Vite, TypeScript, and Tailwind configurations:
 
-**Use GitHub Codespaces**
+- `vite.config.ts`: Vite build configuration
+- `tailwind.config.ts`: Tailwind CSS customization
+- `tsconfig.json`: TypeScript configuration
+- `postcss.config.js`: PostCSS plugins configuration
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Scripts
 
-## What technologies are used for this project?
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start the development server |
+| `npm run build` | Build the production version |
+| `npm run build:dev` | Build with development settings |
+| `npm run lint` | Run ESLint for code quality |
+| `npm run preview` | Preview the production build locally |
 
-This project is built with:
+## Badges
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+[![React](https://img.shields.io/badge/React-18.3-blue.svg)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue.svg)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.4-purple.svg)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC.svg)](https://tailwindcss.com/)
 
-## How can I deploy this project?
+## License
 
-Simply open [Lovable](https://lovable.dev/projects/ae41e55f-1ca8-4328-bf47-548f01dd2637) and click on Share -> Publish.
+This project is licensed under the MIT License - see the LICENSE file for details.
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-## Can I connect a custom domain to my Lovable project?
+## Created By
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Developed by [Jorian Bracke](https://i458219.luna.fhict.nl/) 

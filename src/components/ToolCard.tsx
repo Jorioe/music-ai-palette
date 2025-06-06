@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { MusicTool } from '../types/MusicTool';
 import { Button } from '@/components/ui/button';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Star, Zap, Award, DollarSign } from 'lucide-react';
 import RatingStars from './RatingStars';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,22 +14,32 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
 
   const getCategoryBadge = (category: string) => {
     const colors: Record<string, string> = {
-      "lyrics": "bg-soft-pink/50",
-      "composition": "bg-soft-purple/50",
-      "vocals": "bg-soft-blue/50",
-      "mastering": "bg-soft-green/50"
+      "vocal generation": "bg-soft-pink/50",
+      "stem separation": "bg-soft-purple/50",
+      "music generation": "bg-soft-blue/50",
+      "mastering": "bg-soft-green/50",
+      "visual ai": "bg-soft-yellow/50",
+      "sound design": "bg-soft-orange/50"
     };
     return (
       <span key={category} className={`${colors[category] || "bg-gray-100"} text-xs px-2 py-1 rounded-full`}>
-        {category === 'other' ? 'Overig' :
-        category === 'stem separation' ? 'Stem isolatie' :
-         category === 'composition' ? 'Compositie' :
-         category === 'vocals' ? 'Vocals' :
+        {category === 'vocal generation' ? 'Vocals genereren' :
+         category === 'stem separation' ? 'Stem isolatie' :
+         category === 'music generation' ? 'Muziek genereren' :
          category === 'mastering' ? 'Mastering' :
-         category === 'music generation' ? 'Muziek genereren' : category}
+         category === 'visual ai' ? 'Afbeeldingen genereren' : category}
+         {/* category === 'sound design' ? 'Sound Design' : category} */}
       </span>
     );
   };
+
+  const getMetricBadge = (icon: React.ReactNode, value: number, label: string) => (
+    <div className="flex items-center gap-1 text-sm">
+      {icon}
+      <span className="font-medium">{value}/5</span>
+      <span className="text-muted-foreground text-xs">{label}</span>
+    </div>
+  );
 
   return (
     <div
@@ -55,7 +64,18 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
         </div>
         <h2 className="text-xl font-semibold mb-2">{tool.name}</h2>
         <p className="text-muted-foreground mb-4 flex-grow">{tool.description}</p>
-        {/* Alleen gemiddelde beoordeling en aantal stemmen, geen interactieve beoordeling */}
+        
+        {/* Belangrijke metrics uit de enquête */}
+        <div className="grid grid-cols-2 gap-2 mb-4">
+          {getMetricBadge(<Star className="w-4 h-4" />, tool.useEase, "Gebruiksgemak")}
+          {getMetricBadge(<Award className="w-4 h-4" />, tool.outputQuality, "Kwaliteit")}
+          {getMetricBadge(<Zap className="w-4 h-4" />, tool.speed, "Snelheid")}
+          <div className="flex items-center gap-1 text-sm">
+            <DollarSign className="w-4 h-4" />
+            <span className="text-muted-foreground text-xs">{tool.hasFreeVersion ? "Gratis versie" : "Betaald"}</span>
+          </div>
+        </div>
+
         <div className="flex items-center justify-between mt-4 pt-4 border-t border-border">
           <RatingStars
             rating={tool.rating}

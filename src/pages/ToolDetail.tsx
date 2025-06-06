@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import RatingStars from "../components/RatingStars";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ExternalLink, Video, User } from "lucide-react";
+import { ArrowLeft, ExternalLink, Video, User, Volume2, Image } from "lucide-react";
 import { musicTools } from "../data/musicTools";
 import { useToast } from "@/components/ui/use-toast";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,7 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import AudioPlayer from "../components/AudioPlayer";
-import { Volume2 } from "lucide-react";
+import VideoPlayer from "../components/VideoPlayer";
 
 interface Review {
   name: string;
@@ -143,18 +143,18 @@ const ToolDetail: React.FC = () => {
                 key={cat}
                 className="bg-muted/70 text-xs px-2 sm:px-3 py-1 rounded-full font-medium"
               >
-                {cat === "other"
-                  ? "Overig"
+                {cat === "vocal generation"
+                  ? "Vocals genereren"
                   : cat === "stem separation"
                   ? "Stem scheiding"
-                  : cat === "composition"
-                  ? "Compositie"
-                  : cat === "vocals"
-                  ? "Vocals"
-                  : cat === "mastering"
-                  ? "Mastering"
                   : cat === "music generation"
                   ? "Muziek genereren"
+                  : cat === "mastering"
+                  ? "Mastering"
+                  : cat === "visual ai"
+                  ? "Afbeeldingen genereren"
+                  : cat === "image generation"
+                  ? "Afbeeldingen"
                   : cat}
               </span>
             ))}
@@ -340,7 +340,7 @@ const ToolDetail: React.FC = () => {
                   </p>
                 )}
                 {toolBase.reviewDesc && (
-                  <p className="text-sm sm:text-base mb-0">
+                  <p className="text-sm sm:text-base mb-4">
                     {toolBase.reviewDesc}
                   </p>
                 )}
@@ -348,7 +348,69 @@ const ToolDetail: React.FC = () => {
             )}
             
             <div className="mt-4 sm:mt-5">
-              {/* Audioplayer */}
+              {/* Demo content */}
+              {toolBase.demoContent && toolBase.demoContent.length > 0 && (
+                <div className="space-y-6 mb-6">
+                  {/* Group demos by type */}
+                  {/* Images */}
+                  {toolBase.demoContent.some(demo => demo.type === 'image') && (
+                    <div className="w-full">
+                      <div className="flex items-center gap-2 text-muted-foreground font-semibold mb-2 sm:mb-3">
+                        <Image className="w-4 sm:w-5 h-4 sm:h-5" />
+                        <span className="text-xs sm:text-sm">Voorbeelden</span>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {toolBase.demoContent
+                          .filter(demo => demo.type === 'image')
+                          .map((demo, index) => (
+                            <figure key={index} className="relative">
+                              <img 
+                                src={demo.url} 
+                                alt={demo.description}
+                                className="rounded-lg w-full object-cover aspect-video"
+                              />
+                              <figcaption className="text-xs sm:text-sm text-muted-foreground mt-2">
+                                {demo.description}
+                              </figcaption>
+                            </figure>
+                          ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Videos */}
+                  {toolBase.demoContent
+                    .filter(demo => demo.type === 'video')
+                    .map((demo, index) => (
+                      <div key={index} className="w-full">
+                        <div className="flex items-center gap-2 text-muted-foreground font-semibold mb-2 sm:mb-3">
+                          <Video className="w-4 sm:w-5 h-4 sm:h-5" />
+                          <span className="text-xs sm:text-sm">{demo.description}</span>
+                        </div>
+                        <VideoPlayer 
+                          videoSrc={demo.url} 
+                          thumbnailSrc={demo.thumbnail}
+                          className="mb-4"
+                        />
+                      </div>
+                    ))}
+
+                  {/* Audio */}
+                  {toolBase.demoContent
+                    .filter(demo => demo.type === 'audio')
+                    .map((demo, index) => (
+                      <div key={index} className="w-full">
+                        <div className="flex items-center gap-2 text-muted-foreground font-semibold mb-2 sm:mb-3">
+                          <Volume2 className="w-4 sm:w-5 h-4 sm:h-5" />
+                          <span className="text-xs sm:text-sm">{demo.description}</span>
+                        </div>
+                        <AudioPlayer audioSrc={demo.url} />
+                      </div>
+                    ))}
+                </div>
+              )}
+
+              {/* Legacy audio demos */}
               {toolBase.audioDemo && (
                 <section className="w-full mb-4 sm:mb-5">
                   <div className="flex items-center gap-2 text-muted-foreground font-semibold mb-2 sm:mb-3">

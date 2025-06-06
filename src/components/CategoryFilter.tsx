@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { ToolCategory } from '../types/MusicTool';
+import { TOOL_CATEGORIES } from '../data/musicTools';
 
 interface CategoryFilterProps {
   selectedCategory: ToolCategory;
@@ -9,13 +9,13 @@ interface CategoryFilterProps {
 
 const CategoryFilter: React.FC<CategoryFilterProps> = ({ selectedCategory, setSelectedCategory }) => {
   const categories: { label: string; value: ToolCategory }[] = [
-    { label: 'Alle', value: 'all' },
-    // { label: 'Compositie', value: 'composition' },
-    // { label: 'Vocals', value: 'vocals' },
-    { label: 'Muziek genereren', value: 'music generation' },
-    { label: 'Stem isolatie', value: 'stem separation' },
-    { label: 'Mastering', value: 'mastering' },
-    // { label: 'Overig', value: 'other' }
+    { label: 'Alle', value: 'all' as ToolCategory },
+    { label: 'Vocals genereren', value: TOOL_CATEGORIES.VOCAL_GENERATION },
+    { label: 'Stem isolatie', value: TOOL_CATEGORIES.STEM_SEPARATION },
+    { label: 'Muziek genereren', value: TOOL_CATEGORIES.MUSIC_GENERATION },
+    { label: 'Mastering', value: TOOL_CATEGORIES.MASTERING },
+    // { label: 'Sound Design', value: TOOL_CATEGORIES.SOUND_DESIGN },
+    { label: 'Afbeeldingen genereren', value: TOOL_CATEGORIES.VISUAL_AI }
   ];
 
   return (

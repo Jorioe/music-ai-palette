@@ -47,6 +47,8 @@ const Comparison: React.FC = () => {
       case "mastering": return "Mastering";
       case "music generation": return "Muziek genereren";
       case "stem separation": return "Stem scheiding";
+      case "visual ai": return "Afbeeldingen genereren";
+      case "vocal generation": return "Vocals genereren";
       case "other": return "Overig";
       default: return category;
     }
@@ -57,7 +59,7 @@ const Comparison: React.FC = () => {
     switch(category) {
       case "music generation":
         return [
-          { name: "Type tool", key: "type", tooltip: "Bijv. Web-based, plugin, of app" },
+          { name: "Type tool", key: "hasTemplates", tooltip: "Bijv. Web-based, plugin, of app" },
           { name: "Desktop app", key: "desktop", tooltip: "Beschikbaar als downloadbare app" },
           { name: "Mobile app", key: "mobile", tooltip: "Beschikbaar voor mobiel gebruik" },
           { name: "AI-zang inbegrepen?", key: "sing", tooltip: "Kan de tool zelf zang genereren?" },
@@ -87,6 +89,34 @@ const Comparison: React.FC = () => {
           { name: "Mobile app", key: "mobile", tooltip: "Beschikbaar voor mobiel gebruik" },
           { name: "Soorten stems", key: "stems", tooltip: "Welke stems kun je exporteren?" },
           { name: "Export opties", key: "export", tooltip: "Bestandsformaten die je kunt exporteren" },
+          { name: "Gebruiksvriendelijkheid", key: "ease", tooltip: "Hoe makkelijk is het in gebruik (1–5)" },
+          { name: "Snelheid", key: "speed", tooltip: "Hoe snel genereert het resultaten (1–5)" },
+          { name: "Gratis beschikbaar", key: "free", tooltip: "Is er een gratis versie?" },
+          { name: "Prijsmodel", key: "model", tooltip: "Bijv. gratis, abonnement, of creditsysteem" }
+        ];
+        case "visual ai":
+          return [
+            { name: "Type ", key: "type", tooltip: "Bijv. Web-based, plugin, of app" },
+            { name: "Desktop app", key: "desktop", tooltip: "Beschikbaar als downloadbare app" },
+            { name: "Mobile app", key: "mobile", tooltip: "Beschikbaar voor mobiel gebruik" },
+            { name: "Input opties", key: "input", tooltip: "Welke input opties zijn er?" },
+            { name: "Resolutie", key: "resolution", tooltip: "Resolutie van de afbeelding" },
+            { name: "Stijlen", key: "style", tooltip: "Stijlen van de afbeelding" },
+            { name: "Gebruiksvriendelijkheid", key: "ease", tooltip: "Hoe makkelijk is het in gebruik (1–5)" },
+            { name: "Snelheid", key: "speed", tooltip: "Hoe snel genereert het resultaten (1–5)" },
+            { name: "Gratis beschikbaar", key: "free", tooltip: "Is er een gratis versie?" },
+            { name: "Prijsmodel", key: "model", tooltip: "Bijv. gratis, abonnement, of creditsysteem" }
+          ];
+      case "vocal generation":
+        return [
+          { name: "Type tool", key: "type", tooltip: "Bijv. Web-based, plugin, of app" },
+          { name: "Desktop app", key: "desktop", tooltip: "Beschikbaar als downloadbare app" },
+          { name: "Mobile app", key: "mobile", tooltip: "Beschikbaar voor mobiel gebruik" },
+          { name: "Input opties", key: "input", tooltip: "Welke input opties zijn er?" },
+          { name: "Kan zingen?", key: "sing", tooltip: "Kan de tool zelf zang genereren?" },
+          { name: "Kan praten?", key: "speak", tooltip: "Kan de tool zelf spraak genereren?" },
+          { name: "Stem klonen", key: "clone", tooltip: "Kan de tool stemmen klonen?" },
+          { name: "Taal ondersteuning", key: "language", tooltip: "Welke talen worden ondersteund?" },
           { name: "Gebruiksvriendelijkheid", key: "ease", tooltip: "Hoe makkelijk is het in gebruik (1–5)" },
           { name: "Snelheid", key: "speed", tooltip: "Hoe snel genereert het resultaten (1–5)" },
           { name: "Gratis beschikbaar", key: "free", tooltip: "Is er een gratis versie?" },
@@ -158,6 +188,20 @@ const Comparison: React.FC = () => {
         return tool.hasFreeVersion;
       case "model":
         return tool.priceModel;
+      case "input":
+        return tool.inputOptions;
+      case "resolution":
+        return tool.resolution;
+      case "style":
+        return tool.styleOptions;
+      case "sing":
+        return tool.canSing;
+      case "speak":
+        return tool.canSpeak;
+      case "clone":
+        return tool.voiceCloning;
+      case "language":
+        return tool.languageSupport;
       default:
         return null;
     }

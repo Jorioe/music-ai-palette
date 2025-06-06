@@ -1,5 +1,17 @@
 import { MusicTool } from "../types/MusicTool";
 
+// Tool categories based on user survey results
+export const TOOL_CATEGORIES = {
+  VOCAL_GENERATION: "vocal generation",
+  STEM_SEPARATION: "stem separation",
+  MUSIC_GENERATION: "music generation",
+  VISUAL_AI: "visual ai",
+  // VIDEO_GENERATION: "video generation",
+  IMAGE_GENERATION: "image generation",
+  MASTERING: "mastering",
+  // SOUND_DESIGN: "sound design",
+} as const;
+
 // Voorbeeld Youtube-embeds, je mag deze urls vervangen
 export const musicTools: MusicTool[] = [
   {
@@ -81,7 +93,8 @@ export const musicTools: MusicTool[] = [
           "Prioriteitswachtrij, maximaal 10 nummers tegelijk"
         ]
       }
-    ]
+    ],
+    outputQuality: 3,
   },
   {
     id: "2",
@@ -163,7 +176,8 @@ export const musicTools: MusicTool[] = [
           "API toegang"
         ]
       }
-    ]
+    ],
+    outputQuality: 2,
   },
   {
     id: "3",
@@ -186,6 +200,7 @@ export const musicTools: MusicTool[] = [
     ],
     websiteUrl: "https://soundraw.io/",
     category: ["music generation"],
+    outputQuality: 4,
     audioDemo: "/audio/soundraw-gen1.mp3",
     demoText: "Luister naar het cinematische nummer dat ik heb gemaakt met Soundraw.",
     rating: 4,
@@ -246,7 +261,7 @@ export const musicTools: MusicTool[] = [
           "Distribueren van muziek op streamingplatforms"
         ]
       }
-    ]
+    ],
   },
   {
     id: "4",
@@ -341,7 +356,8 @@ export const musicTools: MusicTool[] = [
           "Geen watermerk",
         ]
       }
-    ]
+    ],
+    outputQuality: 4,
   },
   // {
   //   id: "5",
@@ -462,62 +478,76 @@ export const musicTools: MusicTool[] = [
   //     }
   //   ]
   // },
-  // {
-  //   id: "7",
-  //   name: "Boomy AI",
-  //   description: "Laat gebruikers binnen enkele minuten muziek genereren en uitbrengen. Ideaal voor beginnende artiesten.",
-  //   longDescription: "Boomy AI laat gebruikers binnen enkele minuten muziek componeren en uitbrengen. Het is ideaal voor beginnende artiesten die snel en eenvoudig muziek willen maken zonder diepgaande kennis van muziekproductie.",
-  //   websiteUrl: "https://example.com/vocalenhancer",
-  //   category: ["music generation"],
-  //   audioDemo: "https://cdn.freesound.org/previews/612/612495_5674468-lq.mp3",
-  //   demoText: "Luister naar de instrumenten",
-  //   rating: 4.4,
-  //   ratingsCount: 22,
-  //   imageUrl: "/img/boomy.png",
-  //   extraInfo: "Ideaal voor podcasters en producers: VocalEnhancer verwijdert ruis en verbetert helderheid.",
-  //   videoUrl: "https://www.youtube.com/embed/UVxU2HzPGug?rel=0",
-  //   // Nieuwe eigenschappen voor vergelijking
-  //   typeTool: "Web-based",
-  //   hasDesktopApp: false,
-  //   hasMobileApp: true,
-  //   hasVoice: true,
-  //   genreSupport: "kaas",
-  //   exportOptions: "WAV",
-  //   useEase: 4,
-  //   speed: 3,
-  //   whatLicence: "Alleen bij betaalde abonnementen",
-  //   hasFreeVersion: true,
-  //   priceModel: "Abonnement",
-  //   price: "Gratis tot $30/maand",
-  //   subscriptionInfo: [
-  //     {
-  //       name: "Free",
-  //       price: "Gratis",
-  //       features: [
-  //         "25 nummers per maand",
-  //         "Geen export opties"
-  //       ]
-  //     },
-  //     {
-  //       name: "Creator",
-  //       price: "$10/maand",
-  //       features: [
-  //         "500 nummers per maand",
-  //         "25 WAV exports per maand",
-  //         "Commerciële licentie",
-  //       ]
-  //     },
-  //     {
-  //       name: "Pro",
-  //       price: "$30/maand",
-  //       features: [
-  //         "Onbeperkt nummers per maand",
-  //         "250 WAV exports per maand",
-  //         "Commerciële licentie",
-  //       ]
-  //     }
-  //   ]
-  // },
+  {
+    id: "7",
+    name: "Fadr",
+    description: "Een AI-tool die vocals en instrumenten uit nummers scheidt, handig voor remixing en karaoke.",
+    longDescription: "Fadr is een web-based AI-tool waarmee je eenvoudig stems kunt scheiden van bestaande nummers. Je uploadt een track en Fadr splitst deze automatisch in vocalen, drums, bas, melodie en backing. Ook krijg je meteen de BPM, key en akkoordprogressies. Daarnaast kun je de stems herstructureren tot een remix met een paar klikken.",
+    reviewBlocks: [
+      {
+        type: 'paragraph',
+        content: 'Ik heb Fadr getest met het nummer Beetje van mij van Antoon. Wat me meteen opviel, was hoeveel verschillende stems je kunt exporteren. Niet alleen de standaard vocals en instrumental, maar ook aparte lagen zoals drums, bass en backing vocals.'
+      },
+      {
+        type: 'paragraph',
+        content: 'Daarnaast biedt Fadr nog veel meer dan stem separation alleen. Zo kun je met DrumGPT automatisch een nieuw drumritme laten genereren dat past bij de bestaande track. Dit werkt echt goed als je bijvoorbeeld een remix maakt in een andere stijl of genre.'
+      },
+      {
+        type: 'paragraph',
+        content: 'SynthGPT doet iets soortgelijks, maar dan voor melodieën: het genereert een nieuwe synthlijn op basis van de toonsoort en het akkoordenschema van het origineel. Het klinkt verrassend muzikaal en geeft snel nieuwe inspiratie.'
+      },
+      {
+        type: 'paragraph',
+        content: 'Wat het extra bijzonder maakt, is dat al deze functies gewoon gratis beschikbaar zijn. Voor producers die snel een remix willen maken of gewoon creatief willen spelen met bestaande muziek, is Fadr echt een aanrader.'
+      },
+      {
+        type: 'paragraph',
+        content: 'Luister hieronder naar het originele nummer en de gescheiden vocals en instrumenten.'
+      }
+    ],
+    websiteUrl: "https://fadr.com/",
+    category: ["stem separation"],
+    audioDemo: "/audio/Antoon-BeetjevanMij.mp3",
+    audioDemo2: "/audio/bvm-fadr-vox.mp3",
+    audioDemo3: "/audio/bvm-fadr-ins.mp3",
+    demoText: "Luister naar het origineel (Antoon - Beetje van Mij)",
+    demoText2: "Luister naar de vocals",
+    demoText3: "Luister naar de instrumental",
+    rating: 4.5,
+    ratingsCount: 14,
+    imageUrl: "/img/fadr.png",
+    // Nieuwe eigenschappen voor vergelijking
+    typeTool: "Web-based en plugin",
+    hasDesktopApp: false,
+    hasMobileApp: false,
+    whatStems: "Vocals, muziek, achtergrond vocals, drums, kick, snare, andere drums, melodie, piano, elektrische-en akoestische gitaar, viool, blaasinstrumenten, andere melodieën",
+    exportOptions: "MP3, WAV",
+    useEase: 5,
+    speed: 3,
+    hasFreeVersion: true,
+    priceModel: "Abonnement",
+    price: "$10 per maand",
+    subscriptionInfo: [
+      {
+        name: "Free",
+        price: "Gratis",
+        features: [
+          "Onbeperkt nummers per dag",
+          "MP3 & WAV export",
+        ]
+      },
+      {
+        name: "Plus",
+        price: "$10/maand",
+        features: [
+          "Onbeperkt aantal nummers",
+          "MP3 & WAV export",
+          "Toegang tot Fadr VST plugin",
+        ]
+      }
+    ],
+    outputQuality: 4,
+  },
   {
     id: "8",
     name: "Lalal.ai",
@@ -598,12 +628,13 @@ export const musicTools: MusicTool[] = [
           "MP3, OGG, WAV, FLAC, AVI, MP4, MKV, AIFF & AAC export"
         ]
       }
-    ]
+    ],
+    outputQuality: 3.5,
   },
   {
     id: "9",
     name: "VocalRemover.org",
-    description: "Een AI-tool die vocals en instrumenten uit numemrs scheidt, handig voor remixing en karaoke.",
+    description: "Een AI-tool die vocals en instrumenten uit nummers scheidt, handig voor remixing en karaoke.",
     descriptionBlocks: [
       {
         type: 'paragraph',
@@ -664,7 +695,8 @@ export const musicTools: MusicTool[] = [
           "MP3 & WAV export",
         ]
       }
-    ]
+    ],
+    outputQuality: 4,
   },
   {
     id: "10",
@@ -725,7 +757,8 @@ export const musicTools: MusicTool[] = [
           "Lifetime licentie",
         ]
       }
-    ]
+    ],
+    outputQuality: 4,
   },
   {
     id: "11",
@@ -794,6 +827,225 @@ export const musicTools: MusicTool[] = [
           "Plugins, VSTs en meer"
         ]
       }
+    ],
+    outputQuality: 4,
+  },
+  {
+    id: "12",
+    name: "ElevenLabs",
+    description: "Een geavanceerde AI-tool voor het genereren van natuurlijk klinkende vocals en spraak in verschillende talen en stijlen.",
+    longDescription: "ElevenLabs is een toonaangevende AI-stemgenerator die bekend staat om zijn zeer natuurlijke en emotioneel expressieve stemmen. De tool kan tekst omzetten in spraak in verschillende talen en stijlen, en biedt de mogelijkheid om bestaande stemmen te klonen of nieuwe stemmen te creëren. Het is vooral populair onder muziekproducers voor het genereren van vocals en gesproken woord in muziek.",
+    reviewBlocks: [
+      {
+        type: 'paragraph',
+        content: 'ElevenLabs onderscheidt zich door de uitzonderlijk hoge kwaliteit van de gegenereerde stemmen. De natuurlijke intonatie en emotionele expressie maken het bijna onmogelijk om te onderscheiden van echte menselijke stemmen. De tool biedt uitgebreide controle over aspecten zoals toonhoogte, tempo, en emotionele intensiteit.'
+      },
+      {
+        type: 'paragraph',
+        content: 'Een groot voordeel is de meertalige ondersteuning en de mogelijkheid om stemmen te klonen. Dit maakt het mogelijk om consistente vocals te creëren in verschillende talen of om de stem van een artiest te behouden voor nieuwe producties.'
+      },
+      {
+        type: 'paragraph',
+        content: 'De interface is zeer gebruiksvriendelijk en de generatiesnelheid is indrukwekkend. Het enige nadeel is dat de kosten voor commercieel gebruik relatief hoog kunnen oplopen bij intensief gebruik.'
+      }
+    ],
+    websiteUrl: "https://elevenlabs.io/",
+    category: ["vocal generation"],
+    rating: 4.8,
+    ratingsCount: 156,
+    imageUrl: "/img/elevenlabs.png",
+    extraInfo: "ElevenLabs biedt ook een API voor integratie in andere toepassingen en workflows.",
+    typeTool: "Web-based",
+    hasDesktopApp: true,
+    hasMobileApp: true,
+    canSing: true,
+    canSpeak: true,
+    languageSupport: "BeforeUnloadEvent",
+    exportOptions: "MP3, WAV",
+    useEase: 5,
+    speed: 4,
+    outputQuality: 5,
+    whatLicence: "Commercieel gebruik toegestaan met betaald abonnement",
+    hasFreeVersion: true,
+    priceModel: "Abonnement",
+    price: "Gratis tot $330/maand",
+    subscriptionInfo: [
+      {
+        name: "Free",
+        price: "Gratis",
+        features: [
+          "10.000 karakters per maand",
+          "Toegang tot standaard stemmen",
+          "Basis kwaliteit audio"
+        ]
+      },
+      {
+        name: "Creator",
+        price: "$22/maand",
+        features: [
+          "30.000 karakters per maand",
+          "Toegang tot alle stemmen",
+          "Professionele kwaliteit audio",
+          "Stemkloning (tot 10 stemmen)"
+        ]
+      },
+      {
+        name: "Independent Publisher",
+        price: "$99/maand",
+        features: [
+          "100.000 karakters per maand",
+          "Prioriteitstoegang tot nieuwe stemmen",
+          "Hoogste kwaliteit audio",
+          "Stemkloning (tot 30 stemmen)",
+          "API toegang"
+        ]
+      }
     ]
   },
+  {
+    id: "15",
+    name: "Runway Gen-2",
+    description: "Een krachtige AI-tool voor het genereren van video's en animaties uit tekst of afbeeldingen.",
+    longDescription: "Runway Gen-2 is een geavanceerd AI-platform dat tekst en afbeeldingen kan omzetten in vloeiende video's en animaties. De tool biedt uitgebreide mogelijkheden voor het genereren van video content, inclusief motion tracking, VFX en realtime previews.",
+    reviewBlocks: [
+      {
+        type: 'paragraph',
+        content: 'Runway Gen-2 onderscheidt zich door de hoge kwaliteit van de gegenereerde video\'s en de intuïtieve interface. De tool is bijzonder geschikt voor het maken van korte video\'s voor social media, product visualisaties en creatieve content.'
+      },
+      {
+        type: 'paragraph',
+        content: 'De motion tracking functionaliteit is indrukwekkend en maakt het mogelijk om gegenereerde elementen naadloos te integreren met bestaande video\'s. De real-time preview functie zorgt ervoor dat je direct ziet wat je aan het maken bent.'
+      }
+    ],
+    websiteUrl: "https://runway.ml",
+    category: ["visual ai"],
+    demoContent: [
+      {
+        url: "/video/runway-demo1.mp4",
+        type: "video",
+        description: "Een product visualisatie gegenereerd uit een enkele afbeelding",
+        thumbnail: "/img/runway-thumb1.jpg"
+      },
+      {
+        url: "/video/runway-demo2.mp4",
+        type: "video",
+        description: "Een animatie gegenereerd uit een tekstprompt",
+        thumbnail: "/img/runway-thumb2.jpg"
+      }
+    ],
+    rating: 4.7,
+    ratingsCount: 128,
+    imageUrl: "/img/runway.png",
+    extraInfo: "Runway biedt geavanceerde motion tracking en VFX mogelijkheden, perfect voor het maken van professionele video content.",
+    typeTool: "Web-based",
+    hasDesktopApp: true,
+    hasMobileApp: false,
+    inputOptions: "Tekst",
+    resolution: "4K",
+    styleOptions: "Photorealistic, 3D Animation, Motion Graphics, Artistic, Product Visualization",
+    exportOptions: "MP4, MOV, GIF",
+    useEase: 4,
+    speed: 3,
+    outputQuality: 5,
+    whatLicence: "Commercieel gebruik toegestaan met Pro licentie",
+    hasFreeVersion: true,
+    priceModel: "Abonnement",
+    price: "Gratis tot $35/maand",
+    subscriptionInfo: [
+      {
+        name: "Free",
+        price: "Gratis",
+        features: [
+          "5 video generaties per maand",
+          "720p export",
+          "Basis editing tools",
+          "Max 4 seconden per video"
+        ]
+      },
+      {
+        name: "Pro",
+        price: "$35/maand",
+        features: [
+          "100 video generaties per maand",
+          "4K export",
+          "Geavanceerde editing tools",
+          "Max 12 seconden per video",
+          "Motion tracking",
+          "VFX support",
+          "Commerciële licentie"
+        ]
+      }
+    ],
+  },
+  {
+    id: "16",
+    name: "Midjourney",
+    description: "Een AI-tool voor het genereren van hoogwaardige afbeeldingen uit tekstbeschrijvingen.",
+    longDescription: "Midjourney is een toonaangevende AI-tool voor het genereren van afbeeldingen. De tool staat bekend om zijn artistieke kwaliteit en de mogelijkheid om zeer gedetailleerde en creatieve beelden te maken op basis van tekstuele beschrijvingen.",
+    reviewBlocks: [
+      {
+        type: 'paragraph',
+        content: 'Midjourney blinkt uit in het genereren van artistieke en sfeervolle afbeeldingen. De tool is bijzonder geschikt voor het maken van conceptart, illustraties en visuele content voor muziekprojecten.'
+      },
+      {
+        type: 'paragraph',
+        content: 'De kwaliteit van de gegenereerde afbeeldingen is consistent hoog, met name op het gebied van compositie en detaillering. De tool biedt uitgebreide mogelijkheden voor stijlaanpassingen via parameters in de prompts.'
+      }
+    ],
+    websiteUrl: "https://www.midjourney.com",
+    category: ["visual ai"],
+    demoContent: [
+      {
+        url: "/img/midjourney-demo1.jpg",
+        type: "image",
+        description: "Een albumhoes concept gegenereerd met Midjourney",
+        thumbnail: "/img/midjourney-thumb1.jpg"
+      },
+      {
+        url: "/img/midjourney-demo2.jpg",
+        type: "image",
+        description: "Een concert visualisatie",
+        thumbnail: "/img/midjourney-thumb2.jpg"
+      }
+    ],
+    rating: 4.8,
+    ratingsCount: 256,
+    imageUrl: "/img/midjourney.png",
+    extraInfo: "Midjourney werkt via Discord en biedt uitgebreide mogelijkheden voor het fine-tunen van de gegenereerde afbeeldingen via parameters in de prompts.",
+    typeTool: "Discord-based",
+    hasDesktopApp: false,
+    hasMobileApp: false,
+    inputOptions: "Tekst",
+    resolution: "2048x2048",
+    styleOptions: "Photorealistic, Artistic, Abstract, Cinematic, Album Art, Concert Visuals",
+    exportOptions: "PNG, WebP",
+    useEase: 4,
+    speed: 4,
+    outputQuality: 5,
+    whatLicence: "Commercieel gebruik toegestaan met betaald abonnement",
+    hasFreeVersion: false,
+    priceModel: "Abonnement",
+    price: "$10 tot $60/maand",
+    subscriptionInfo: [
+      {
+        name: "Basic",
+        price: "$10/maand",
+        features: [
+          "200 generaties per maand",
+          "Standaard wachttijd",
+          "Basis resolutie"
+        ]
+      },
+      {
+        name: "Pro",
+        price: "$30/maand",
+        features: [
+          "Onbeperkt generaties",
+          "Snelle generatie",
+          "Hoge resolutie",
+          "Commerciële licentie"
+        ]
+      }
+    ],
+  }
 ];

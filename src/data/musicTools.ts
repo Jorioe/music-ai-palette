@@ -94,7 +94,7 @@ export const musicTools: MusicTool[] = [
         ]
       }
     ],
-    outputQuality: 3,
+    outputQuality: 4,
   },
   {
     id: "2",
@@ -177,7 +177,7 @@ export const musicTools: MusicTool[] = [
         ]
       }
     ],
-    outputQuality: 2,
+    outputQuality: 3,
   },
   {
     id: "3",
@@ -357,7 +357,7 @@ export const musicTools: MusicTool[] = [
         ]
       }
     ],
-    outputQuality: 4,
+    outputQuality: 3,
   },
   // {
   //   id: "5",
@@ -830,78 +830,84 @@ export const musicTools: MusicTool[] = [
     ],
     outputQuality: 4,
   },
-  {
-    id: "12",
-    name: "ElevenLabs",
-    description: "Een geavanceerde AI-tool voor het genereren van natuurlijk klinkende vocals in verschillende talen en stijlen.",
-    longDescription: "ElevenLabs is een AI-stemgenerator die bekend staat om zijn zeer natuurlijke en emotioneel expressieve stemmen. De tool kan tekst omzetten in spraak in verschillende talen en stijlen, en biedt de mogelijkheid om bestaande stemmen te klonen of nieuwe stemmen te creëren. Het is vooral populair onder muziekproducers voor het genereren van vocals en gesproken woorden in muziek.",
-    reviewBlocks: [
-      {
-        type: 'paragraph',
-        content: 'ElevenLabs onderscheidt zich door de uitzonderlijk hoge kwaliteit van de gegenereerde stemmen. De natuurlijke intonatie en emotionele expressie maken het bijna onmogelijk om te onderscheiden van echte menselijke stemmen. De tool biedt uitgebreide controle over aspecten zoals toonhoogte, tempo, en emotionele intensiteit.'
-      },
-      {
-        type: 'paragraph',
-        content: 'Een groot voordeel is de meertalige ondersteuning en de mogelijkheid om stemmen te klonen. Dit maakt het mogelijk om consistente vocals te creëren in verschillende talen of om de stem van een artiest te behouden voor nieuwe producties.'
-      },
-      {
-        type: 'paragraph',
-        content: 'De interface is zeer gebruiksvriendelijk en de generatiesnelheid is indrukwekkend. Het enige nadeel is dat de kosten voor commercieel gebruik relatief hoog kunnen oplopen bij intensief gebruik.'
-      }
-    ],
-    websiteUrl: "https://elevenlabs.io/",
-    category: ["vocal generation"],
-    rating: 4.8,
-    ratingsCount: 156,
-    imageUrl: "/img/elevenlabs.png",
-    extraInfo: "ElevenLabs biedt ook een API voor integratie in andere toepassingen en workflows.",
-    typeTool: "Web-based",
-    hasDesktopApp: true,
-    hasMobileApp: true,
-    canSing: true,
-    canSpeak: true,
-    languageSupport: "BeforeUnloadEvent",
-    exportOptions: "MP3, WAV",
-    useEase: 5,
-    speed: 4,
-    outputQuality: 5,
-    whatLicence: "Commercieel gebruik toegestaan met betaald abonnement",
-    hasFreeVersion: true,
-    priceModel: "Abonnement",
-    price: "Gratis tot $330/maand",
-    subscriptionInfo: [
-      {
-        name: "Free",
-        price: "Gratis",
-        features: [
-          "10.000 karakters per maand",
-          "Toegang tot standaard stemmen",
-          "Basis kwaliteit audio"
-        ]
-      },
-      {
-        name: "Creator",
-        price: "$22/maand",
-        features: [
-          "30.000 karakters per maand",
-          "Toegang tot alle stemmen",
-          "Professionele kwaliteit audio",
-          "Stemkloning (tot 10 stemmen)"
-        ]
-      },
-      {
-        name: "Independent Publisher",
-        price: "$99/maand",
-        features: [
-          "100.000 karakters per maand",
-          "Prioriteitstoegang tot nieuwe stemmen",
-          "Hoogste kwaliteit audio",
-          "Stemkloning (tot 30 stemmen)",
-          "API toegang"
-        ]
-      }
-    ]
-  },
+  // {
+  //   id: "12",
+  //   name: "ElevenLabs",
+  //   description: "Een geavanceerde AI-tool voor het genereren van natuurlijk klinkende vocals in verschillende talen en stijlen.",
+  //   longDescription: "ElevenLabs is een geavanceerde AI-voicegenerator waarmee je realistische menselijke stemmen kunt maken op basis van tekst. De tool is vooral populair voor het maken van voice-overs, dialogen en zelfs zanglijnen. Je kunt kiezen uit bestaande stemmen of je eigen stem klonen (indien je daar toestemming voor hebt), wat het perfect maakt voor gepersonaliseerde audio.",
+  //   reviewBlocks: [
+  //     {
+  //       type: 'paragraph',
+  //       content: 'ElevenLabs onderscheidt zich door de uitzonderlijk hoge kwaliteit van de gegenereerde stemmen. De natuurlijke intonatie en emotionele expressie maken het bijna onmogelijk om te onderscheiden van echte menselijke stemmen. De tool biedt uitgebreide controle over aspecten zoals toonhoogte, tempo, en emotionele intensiteit.'
+  //     },
+  //     {
+  //       type: 'paragraph',
+  //       content: 'Een groot voordeel is de meertalige ondersteuning en de mogelijkheid om stemmen te klonen. Dit maakt het mogelijk om consistente vocals te creëren in verschillende talen of om de stem van een artiest te behouden voor nieuwe producties.'
+  //     },
+  //     {
+  //       type: 'paragraph',
+  //       content: 'De interface is zeer gebruiksvriendelijk en de generatiesnelheid is indrukwekkend. Het enige nadeel is dat de kosten voor commercieel gebruik relatief hoog kunnen oplopen bij intensief gebruik.'
+  //     }
+  //   ],
+  //   websiteUrl: "https://elevenlabs.io/",
+  //   category: ["vocal generation"],
+  //   rating: 4.8,
+  //   ratingsCount: 156,
+  //   imageUrl: "/img/elevenlabs.png",
+  //   extraInfo: "ElevenLabs biedt ook een API voor integratie in andere toepassingen en workflows.",
+  //   typeTool: "Web-based",
+  //   hasDesktopApp: true,
+  //   hasMobileApp: true,
+  //   canSing: true,
+  //   canSpeak: true,
+  //   languageSupport: "BeforeUnloadEvent",
+  //   exportOptions: "MP3, WAV",
+  //   useEase: 5,
+  //   speed: 4,
+  //   outputQuality: 5,
+  //   whatLicence: "Commercieel gebruik toegestaan met betaald abonnement",
+  //   hasFreeVersion: true,
+  //   priceModel: "Abonnement",
+  //   price: "Gratis tot $99/maand",
+  //   subscriptionInfo: [
+  //     {
+  //       name: "Free",
+  //       price: "Gratis",
+  //       features: [
+  //         "10.000 credits per maand",
+  //         "Text to speech",
+  //         "Speech to text",
+  //         "API toegang"
+  //       ]
+  //     },
+  //     {
+  //       name: "Starter",
+  //       price: "$5/maand",
+  //       features: [
+  //         "30.000 credits per maand",
+  //         "Stemmen klonen",
+  //         "Commercieel gebruik"
+  //       ]
+  //     },
+  //     {
+  //       name: "Creator",
+  //       price: "$11/maand",
+  //       features: [
+  //         "100.000 credits per maand",
+  //         "Professioneel stemmen klonen",
+  //         "Hogere kwaliteit audio"
+  //       ]
+  //     },
+  //     {
+  //       name: "Pro",
+  //       price: "$99/maand",
+  //       features: [
+  //         "500.000 karakters per maand",
+  //         "Hoogste kwaliteit audio"
+  //       ]
+  //     }
+  //   ]
+  // },
   {
     id: "15",
     name: "Leonardo AI",
@@ -910,69 +916,83 @@ export const musicTools: MusicTool[] = [
     reviewBlocks: [
       {
         type: 'paragraph',
-        content: 'Runway Gen-2 onderscheidt zich door de hoge kwaliteit van de gegenereerde video\'s en de intuïtieve interface. De tool is bijzonder geschikt voor het maken van korte video\'s voor social media, product visualisaties en creatieve content.'
+        content: 'Ik heb Ideogram getest op 2 criteria: tekst integratie en artistiek. Hiervoor heb ik de volgende prompts gegeven:'
+      },
+      {
+        type: 'list',
+        content: [
+          'Tekst integratie: "A dark, energetic hardstyle album cover with glowing abstract shapes, aggressive type design, and futuristic colors. Include the word \'REBIRTH\' in the design."',
+          'Artistiek: "A surreal dreamscape where a massive tree grows upside down from the sky, its glowing roots touching a calm ocean at sunset. A lone figure stands on the water, looking up at the tree - their silhouette glowing faintly. Soft pastel colors, painterly style, high detail, cinematic lighting, ethereal mood."'
+        ]
       },
       {
         type: 'paragraph',
-        content: 'De motion tracking functionaliteit is indrukwekkend en maakt het mogelijk om gegenereerde elementen naadloos te integreren met bestaande video\'s. De real-time preview functie zorgt ervoor dat je direct ziet wat je aan het maken bent.'
+        content: 'Bij de eerste prompt leverde Leonardo een mooi beeld. Echter was de tekst niet juist gegenereerd. Bij de tweede prompt leverde Leonardo een mooi beeld dat goed aanslot bij de dromerige sfeer. Echter stond in de prompt dat de boom ondersteboven vanuit de lucht moest groeien, maar dat is niet het geval op de afbeeldingen.'
       }
     ],
-    websiteUrl: "https://runway.ml",
+    websiteUrl: "https://app.leonardo.ai/",
     category: ["visual ai"],
     demoContent: [
       {
         url: "/img/leon-txt.jpg",
         type: "image",
-        description: "Een albumhoes concept gegenereerd met Midjourney",
+        description: "De eerste prompt",
         thumbnail: "/img/midjourney-thumb1.jpg"
       },
       {
         url: "/img/leon-style.jpg",
         type: "image",
-        description: "Een concert visualisatie",
+        description: "De tweede prompt",
         thumbnail: "/img/midjourney-thumb2.jpg"
       }
     ],
-    rating: 4.7,
+    rating: 4,
     ratingsCount: 128,
     imageUrl: "/img/leonardo.jpg",
-    extraInfo: "Runway biedt geavanceerde motion tracking en VFX mogelijkheden, perfect voor het maken van professionele video content.",
     typeTool: "Web-based",
-    hasDesktopApp: true,
+    hasDesktopApp: false,
     hasMobileApp: false,
     inputOptions: "Tekst",
-    styleOptions: "Photorealistic, 3D Animation, Motion Graphics, Artistic, Product Visualization",
-    exportOptions: "MP4, MOV, GIF",
+    styleOptions: "Breed",
+    exportOptions: "JPG",
     useEase: 4,
-    speed: 3,
-    textIntegration: 5,
-    outputQuality: 5,
-    whatLicence: "Commercieel gebruik toegestaan met Pro licentie",
+    speed: 3.5,
+    textIntegration: 3,
+    outputQuality: 4,
+    whatLicence: "Commercieel gebruik toegestaan vanaf Apprentice",
     hasFreeVersion: true,
     priceModel: "Abonnement",
-    price: "Gratis tot $35/maand",
+    price: "Gratis tot $60/maand",
     subscriptionInfo: [
       {
         name: "Free",
         price: "Gratis",
         features: [
-          "5 video generaties per maand",
-          "720p export",
-          "Basis editing tools",
-          "Max 4 seconden per video"
+          "150 credits per dag",
         ]
       },
       {
-        name: "Pro",
-        price: "$35/maand",
+        name: "Apprentice",
+        price: "$12/maand",
         features: [
-          "100 video generaties per maand",
-          "4K export",
-          "Geavanceerde editing tools",
-          "Max 12 seconden per video",
-          "Motion tracking",
-          "VFX support",
-          "Commerciële licentie"
+          "8.500 credits per maand",
+          "10 AI modellen trainen"
+        ]
+      },
+      {
+        name: "Artisan Unlimited",
+        price: "$30/maand",
+        features: [
+          "25.000 credits per maand",
+          "20 AI modellen trainen"
+        ]
+      },
+      {
+        name: "Maestro Unlimited",
+        price: "$60/maand",
+        features: [
+          "60.000 credits per maand",
+          "50 AI modellen trainen"
         ]
       }
     ],
@@ -985,139 +1005,160 @@ export const musicTools: MusicTool[] = [
     reviewBlocks: [
       {
         type: 'paragraph',
-        content: 'Midjourney blinkt uit in het genereren van artistieke en sfeervolle afbeeldingen. De tool is bijzonder geschikt voor het maken van conceptart, illustraties en visuele content voor muziekprojecten.'
+        content: 'Ik heb Ideogram getest op 2 criteria: tekst integratie en artistiek. Hiervoor heb ik de volgende prompts gegeven:'
+      },
+      {
+        type: 'list',
+        content: [
+          'Tekst integratie: "A dark, energetic hardstyle album cover with glowing abstract shapes, aggressive type design, and futuristic colors. Include the word \'REBIRTH\' in the design."',
+          'Artistiek: "A surreal dreamscape where a massive tree grows upside down from the sky, its glowing roots touching a calm ocean at sunset. A lone figure stands on the water, looking up at the tree - their silhouette glowing faintly. Soft pastel colors, painterly style, high detail, cinematic lighting, ethereal mood."'
+        ]
       },
       {
         type: 'paragraph',
-        content: 'De kwaliteit van de gegenereerde afbeeldingen is consistent hoog, met name op het gebied van compositie en detaillering. De tool biedt uitgebreide mogelijkheden voor stijlaanpassingen via parameters in de prompts.'
+        content: 'Bij de eerste prompt leverde Ideogram een mooi beeld dat energiek, futuristich en scherp was. Bij de tweede prompt leverde Ideogram een mooi beeld adt goed aanslot bij de dromerige sfeer'
       }
     ],
-    websiteUrl: "https://www.midjourney.com",
+    websiteUrl: "https://ideogram.ai/",
     category: ["visual ai"],
     demoContent: [
       {
-        url: "/img/midjourney-demo1.jpg",
+        url: "/img/ideo-txt.jpeg",
         type: "image",
-        description: "Een albumhoes concept gegenereerd met Midjourney",
+        description: "De eerste prompt",
         thumbnail: "/img/midjourney-thumb1.jpg"
       },
       {
-        url: "/img/midjourney-demo2.jpg",
+        url: "/img/ideo-style.jpeg",
         type: "image",
-        description: "Een concert visualisatie",
+        description: "De tweede prompt",
         thumbnail: "/img/midjourney-thumb2.jpg"
       }
     ],
-    rating: 4.8,
+    rating: 4.3,
     ratingsCount: 256,
     imageUrl: "/img/ideogram.png",
-    extraInfo: "Midjourney werkt via Discord en biedt uitgebreide mogelijkheden voor het fine-tunen van de gegenereerde afbeeldingen via parameters in de prompts.",
-    typeTool: "Discord-based",
+    typeTool: "Web-based",
     hasDesktopApp: false,
     hasMobileApp: false,
-    inputOptions: "Tekst",
-    styleOptions: "Photorealistic, Artistic, Abstract, Cinematic, Album Art, Concert Visuals",
-    exportOptions: "PNG, WebP",
+    inputOptions: "Tekst, Afbeelding",
+    styleOptions: "Beperkt",
+    exportOptions: "JPEG",
     useEase: 4,
     speed: 4,
-    textIntegration: 5,
-    outputQuality: 5,
-    whatLicence: "Commercieel gebruik toegestaan met betaald abonnement",
-    hasFreeVersion: false,
-    priceModel: "Abonnement",
-    price: "$10 tot $60/maand",
-    subscriptionInfo: [
-      {
-        name: "Basic",
-        price: "$10/maand",
-        features: [
-          "200 generaties per maand",
-          "Standaard wachttijd",
-          "Basis resolutie"
-        ]
-      },
-      {
-        name: "Pro",
-        price: "$30/maand",
-        features: [
-          "Onbeperkt generaties",
-          "Snelle generatie",
-          "Hoge resolutie",
-          "Commerciële licentie"
-        ]
-      }
-    ],
-  },
-  {
-    id: "17",
-    name: "PlayHT",
-    description: "Een geavanceerde AI-tool voor het genereren van natuurlijk klinkende vocals in verschillende talen en stijlen.",
-    longDescription: "ElevenLabs is een AI-stemgenerator die bekend staat om zijn zeer natuurlijke en emotioneel expressieve stemmen. De tool kan tekst omzetten in spraak in verschillende talen en stijlen, en biedt de mogelijkheid om bestaande stemmen te klonen of nieuwe stemmen te creëren. Het is vooral populair onder muziekproducers voor het genereren van vocals en gesproken woorden in muziek.",
-    reviewBlocks: [
-      {
-        type: 'paragraph',
-        content: 'ElevenLabs onderscheidt zich door de uitzonderlijk hoge kwaliteit van de gegenereerde stemmen. De natuurlijke intonatie en emotionele expressie maken het bijna onmogelijk om te onderscheiden van echte menselijke stemmen. De tool biedt uitgebreide controle over aspecten zoals toonhoogte, tempo, en emotionele intensiteit.'
-      },
-      {
-        type: 'paragraph',
-        content: 'Een groot voordeel is de meertalige ondersteuning en de mogelijkheid om stemmen te klonen. Dit maakt het mogelijk om consistente vocals te creëren in verschillende talen of om de stem van een artiest te behouden voor nieuwe producties.'
-      },
-      {
-        type: 'paragraph',
-        content: 'De interface is zeer gebruiksvriendelijk en de generatiesnelheid is indrukwekkend. Het enige nadeel is dat de kosten voor commercieel gebruik relatief hoog kunnen oplopen bij intensief gebruik.'
-      }
-    ],
-    websiteUrl: "https://elevenlabs.io/",
-    category: ["vocal generation"],
-    rating: 4.8,
-    ratingsCount: 156,
-    imageUrl: "/img/playht.png",
-    extraInfo: "ElevenLabs biedt ook een API voor integratie in andere toepassingen en workflows.",
-    typeTool: "Web-based",
-    hasDesktopApp: true,
-    hasMobileApp: true,
-    canSing: true,
-    canSpeak: true,
-    languageSupport: "BeforeUnloadEvent",
-    exportOptions: "MP3, WAV",
-    useEase: 5,
-    speed: 4,
-    outputQuality: 5,
+    textIntegration: 4.8,
+    outputQuality: 4.5,
     whatLicence: "Commercieel gebruik toegestaan met betaald abonnement",
     hasFreeVersion: true,
     priceModel: "Abonnement",
-    price: "Gratis tot $330/maand",
+    price: "Gratis tot $60/maand",
     subscriptionInfo: [
       {
         name: "Free",
         price: "Gratis",
         features: [
-          "10.000 karakters per maand",
-          "Toegang tot standaard stemmen",
-          "Basis kwaliteit audio"
+          "10 credits per dag",
+          "Standaard wachttijd"
         ]
       },
       {
-        name: "Creator",
-        price: "$22/maand",
+        name: "Basic",
+        price: "$8/maand",
         features: [
-          "30.000 karakters per maand",
-          "Toegang tot alle stemmen",
-          "Professionele kwaliteit audio",
-          "Stemkloning (tot 10 stemmen)"
+          "400 priority credits per maand",
+          "100 slow credits per dag",
+          "Hoge resolutie"
         ]
       },
       {
-        name: "Independent Publisher",
-        price: "$99/maand",
+        name: "Plus",
+        price: "$20/maand",
         features: [
-          "100.000 karakters per maand",
-          "Prioriteitstoegang tot nieuwe stemmen",
-          "Hoogste kwaliteit audio",
-          "Stemkloning (tot 30 stemmen)",
-          "API toegang"
+          "1.000 priority credits per maand",
+          "Onbeperkt slow credits per dag",
+          "Hoge resolutie",
+          "Eigen afbeeldingen uploaden"
+        ]
+      },
+      {
+        name: "Pro",
+        price: "$60/maand",
+        features: [
+          "3.500 priority credits per maand",
+          "Onbeperkt slow credits per dag"
         ]
       }
-    ]
+    ],
   },
+  // {
+  //   id: "17",
+  //   name: "PlayHT",
+  //   description: "Een geavanceerde AI-tool voor het genereren van natuurlijk klinkende vocals in verschillende talen en stijlen.",
+  //   longDescription: "PlayHT is een AI-voiceplatform dat zich richt op het genereren van professionele voice-overs en audio content met behulp van synthetische stemmen. De focus ligt op snelheid, realisme en API-integratie voor bedrijven die grote hoeveelheden audio nodig hebben.",
+  //   reviewBlocks: [
+  //     {
+  //       type: 'paragraph',
+  //       content: 'ElevenLabs onderscheidt zich door de uitzonderlijk hoge kwaliteit van de gegenereerde stemmen. De natuurlijke intonatie en emotionele expressie maken het bijna onmogelijk om te onderscheiden van echte menselijke stemmen. De tool biedt uitgebreide controle over aspecten zoals toonhoogte, tempo, en emotionele intensiteit.'
+  //     },
+  //     {
+  //       type: 'paragraph',
+  //       content: 'Een groot voordeel is de meertalige ondersteuning en de mogelijkheid om stemmen te klonen. Dit maakt het mogelijk om consistente vocals te creëren in verschillende talen of om de stem van een artiest te behouden voor nieuwe producties.'
+  //     },
+  //     {
+  //       type: 'paragraph',
+  //       content: 'De interface is zeer gebruiksvriendelijk en de generatiesnelheid is indrukwekkend. Het enige nadeel is dat de kosten voor commercieel gebruik relatief hoog kunnen oplopen bij intensief gebruik.'
+  //     }
+  //   ],
+  //   websiteUrl: "https://play.ht/",
+  //   category: ["vocal generation"],
+  //   rating: 4.8,
+  //   ratingsCount: 156,
+  //   imageUrl: "/img/playht.png",
+  //   extraInfo: "ElevenLabs biedt ook een API voor integratie in andere toepassingen en workflows.",
+  //   typeTool: "Web-based",
+  //   hasDesktopApp: false,
+  //   hasMobileApp: false,
+  //   canSing: true,
+  //   canSpeak: true,
+  //   languageSupport: "25 talen",
+  //   exportOptions: "MP3, WAV",
+  //   useEase: 5,
+  //   speed: 4,
+  //   outputQuality: 5,
+  //   whatLicence: "Commercieel gebruik toegestaan met betaald abonnement",
+  //   hasFreeVersion: true,
+  //   priceModel: "Abonnement",
+  //   price: "Gratis tot $99/maand",
+  //   subscriptionInfo: [
+  //     {
+  //       name: "Free",
+  //       price: "Gratis",
+  //       features: [
+  //         "1000 karakters per maand",
+  //         "Toegang tot alle stemmen en talen",
+  //         "1 stem klonen",
+  //         "GEEN toegang tot downloaden"
+  //       ]
+  //     },
+  //     {
+  //       name: "Creator",
+  //       price: "$19/maand",
+  //       features: [
+  //         "250.000 karakters per maand",
+  //         "10 stemmen klonen",
+  //         "Naamsvermelding-vrij gebruik",
+  //         "Geavanceerde audio-export"
+  //       ]
+  //     },
+  //     {
+  //       name: "Unlimited",
+  //       price: "$99/maand",
+  //       features: [
+  //         "Onbeperkt karakters per maand",
+  //         "Onbeperkt stemmen klonen",
+  //         "3 Hoge kwaliteit stemmen klonen"
+  //       ]
+  //     }
+  //   ]
+  // },
 ];

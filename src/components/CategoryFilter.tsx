@@ -10,7 +10,7 @@ interface CategoryFilterProps {
 const CategoryFilter: React.FC<CategoryFilterProps> = ({ selectedCategory, setSelectedCategory }) => {
   const categories: { label: string; value: ToolCategory }[] = [
     { label: 'Alle', value: 'all' as ToolCategory },
-    { label: 'Vocals genereren', value: TOOL_CATEGORIES.VOCAL_GENERATION },
+    // { label: 'Vocals genereren', value: TOOL_CATEGORIES.VOCAL_GENERATION },
     { label: 'Stem isolatie', value: TOOL_CATEGORIES.STEM_SEPARATION },
     { label: 'Muziek genereren', value: TOOL_CATEGORIES.MUSIC_GENERATION },
     { label: 'Mastering', value: TOOL_CATEGORIES.MASTERING },

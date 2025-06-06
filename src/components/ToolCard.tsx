@@ -14,21 +14,21 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
 
   const getCategoryBadge = (category: string) => {
     const colors: Record<string, string> = {
-      "vocal generation": "bg-soft-pink/50",
-      "stem separation": "bg-soft-purple/50",
-      "music generation": "bg-soft-blue/50",
-      "mastering": "bg-soft-green/50",
-      "visual ai": "bg-soft-yellow/50",
-      "sound design": "bg-soft-orange/50"
+      "vocal generation": "bg-[#FFE2E6] text-[#9E1B32]",
+      "stem separation": "bg-[#E5DEFF] text-[#4F3B99]",
+      "music generation": "bg-[#D3E4FD] text-[#1E4784]",
+      "mastering": "bg-[#F2FCE2] text-[#3B7A1E]",
+      "visual ai": "bg-[#FFF3D6] text-[#946B00]",
+      "sound design": "bg-[#FFE8D9] text-[#A74C00]"
     };
+    const [bgColor, textColor] = (colors[category] || "bg-gray-100 text-gray-700").split(" ");
     return (
-      <span key={category} className={`${colors[category] || "bg-gray-100"} text-xs px-2 py-1 rounded-full`}>
+      <span key={category} className={`${bgColor} ${textColor} text-xs px-2 py-1 rounded-full font-medium`}>
         {category === 'vocal generation' ? 'Vocals genereren' :
          category === 'stem separation' ? 'Stem isolatie' :
          category === 'music generation' ? 'Muziek genereren' :
          category === 'mastering' ? 'Mastering' :
          category === 'visual ai' ? 'Afbeeldingen genereren' : category}
-         {/* category === 'sound design' ? 'Sound Design' : category} */}
       </span>
     );
   };

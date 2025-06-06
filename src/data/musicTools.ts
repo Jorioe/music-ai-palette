@@ -904,9 +904,9 @@ export const musicTools: MusicTool[] = [
   },
   {
     id: "15",
-    name: "Runway Gen-2",
-    description: "Een krachtige AI-tool voor het genereren van video's en animaties uit tekst of afbeeldingen.",
-    longDescription: "Runway Gen-2 is een geavanceerd AI-platform dat tekst en afbeeldingen kan omzetten in vloeiende video's en animaties. De tool biedt uitgebreide mogelijkheden voor het genereren van video content, inclusief motion tracking, VFX en realtime previews.",
+    name: "Leonardo AI",
+    description: "Een AI-tool voor het genereren van hoogwaardige afbeeldingen uit tekstbeschrijvingen.",
+    longDescription: "Leonardo AI is een krachtige beeldgenerator gebaseerd op generatieve AI-modellen, die het mogelijk maakt om extreem gedetailleerde visuals te maken voor bijvoorbeeld artwork, concept art of game assets.",
     reviewBlocks: [
       {
         type: 'paragraph',
@@ -921,16 +921,16 @@ export const musicTools: MusicTool[] = [
     category: ["visual ai"],
     demoContent: [
       {
-        url: "/video/runway-demo1.mp4",
-        type: "video",
-        description: "Een product visualisatie gegenereerd uit een enkele afbeelding",
-        thumbnail: "/img/runway-thumb1.jpg"
+        url: "/img/leon-txt.jpg",
+        type: "image",
+        description: "Een albumhoes concept gegenereerd met Midjourney",
+        thumbnail: "/img/midjourney-thumb1.jpg"
       },
       {
-        url: "/video/runway-demo2.mp4",
-        type: "video",
-        description: "Een animatie gegenereerd uit een tekstprompt",
-        thumbnail: "/img/runway-thumb2.jpg"
+        url: "/img/leon-style.jpg",
+        type: "image",
+        description: "Een concert visualisatie",
+        thumbnail: "/img/midjourney-thumb2.jpg"
       }
     ],
     rating: 4.7,
@@ -979,9 +979,9 @@ export const musicTools: MusicTool[] = [
   },
   {
     id: "16",
-    name: "Midjourney",
+    name: "Ideogram AI",
     description: "Een AI-tool voor het genereren van hoogwaardige afbeeldingen uit tekstbeschrijvingen.",
-    longDescription: "Midjourney is een toonaangevende AI-tool voor het genereren van afbeeldingen. De tool staat bekend om zijn artistieke kwaliteit en de mogelijkheid om zeer gedetailleerde en creatieve beelden te maken op basis van tekstuele beschrijvingen.",
+    longDescription: "Ideogram is een visuele AI-generator die zich richt op typografie en beeld met geïntegreerde tekst, iets waar andere AI-beeldtools vaak moeite mee hebben. Het is perfect voor posters, logo's, visuele statements en creatieve ontwerpen waarin tekst en beeld gecombineerd worden.",
     reviewBlocks: [
       {
         type: 'paragraph',
@@ -1047,5 +1047,77 @@ export const musicTools: MusicTool[] = [
         ]
       }
     ],
-  }
+  },
+  {
+    id: "17",
+    name: "PlayHT",
+    description: "Een geavanceerde AI-tool voor het genereren van natuurlijk klinkende vocals in verschillende talen en stijlen.",
+    longDescription: "ElevenLabs is een AI-stemgenerator die bekend staat om zijn zeer natuurlijke en emotioneel expressieve stemmen. De tool kan tekst omzetten in spraak in verschillende talen en stijlen, en biedt de mogelijkheid om bestaande stemmen te klonen of nieuwe stemmen te creëren. Het is vooral populair onder muziekproducers voor het genereren van vocals en gesproken woorden in muziek.",
+    reviewBlocks: [
+      {
+        type: 'paragraph',
+        content: 'ElevenLabs onderscheidt zich door de uitzonderlijk hoge kwaliteit van de gegenereerde stemmen. De natuurlijke intonatie en emotionele expressie maken het bijna onmogelijk om te onderscheiden van echte menselijke stemmen. De tool biedt uitgebreide controle over aspecten zoals toonhoogte, tempo, en emotionele intensiteit.'
+      },
+      {
+        type: 'paragraph',
+        content: 'Een groot voordeel is de meertalige ondersteuning en de mogelijkheid om stemmen te klonen. Dit maakt het mogelijk om consistente vocals te creëren in verschillende talen of om de stem van een artiest te behouden voor nieuwe producties.'
+      },
+      {
+        type: 'paragraph',
+        content: 'De interface is zeer gebruiksvriendelijk en de generatiesnelheid is indrukwekkend. Het enige nadeel is dat de kosten voor commercieel gebruik relatief hoog kunnen oplopen bij intensief gebruik.'
+      }
+    ],
+    websiteUrl: "https://elevenlabs.io/",
+    category: ["vocal generation"],
+    rating: 4.8,
+    ratingsCount: 156,
+    imageUrl: "/img/elevenlabs.png",
+    extraInfo: "ElevenLabs biedt ook een API voor integratie in andere toepassingen en workflows.",
+    typeTool: "Web-based",
+    hasDesktopApp: true,
+    hasMobileApp: true,
+    canSing: true,
+    canSpeak: true,
+    languageSupport: "BeforeUnloadEvent",
+    exportOptions: "MP3, WAV",
+    useEase: 5,
+    speed: 4,
+    outputQuality: 5,
+    whatLicence: "Commercieel gebruik toegestaan met betaald abonnement",
+    hasFreeVersion: true,
+    priceModel: "Abonnement",
+    price: "Gratis tot $330/maand",
+    subscriptionInfo: [
+      {
+        name: "Free",
+        price: "Gratis",
+        features: [
+          "10.000 karakters per maand",
+          "Toegang tot standaard stemmen",
+          "Basis kwaliteit audio"
+        ]
+      },
+      {
+        name: "Creator",
+        price: "$22/maand",
+        features: [
+          "30.000 karakters per maand",
+          "Toegang tot alle stemmen",
+          "Professionele kwaliteit audio",
+          "Stemkloning (tot 10 stemmen)"
+        ]
+      },
+      {
+        name: "Independent Publisher",
+        price: "$99/maand",
+        features: [
+          "100.000 karakters per maand",
+          "Prioriteitstoegang tot nieuwe stemmen",
+          "Hoogste kwaliteit audio",
+          "Stemkloning (tot 30 stemmen)",
+          "API toegang"
+        ]
+      }
+    ]
+  },
 ];

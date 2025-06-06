@@ -347,7 +347,7 @@ const ToolDetail: React.FC = () => {
               </>
             )}
             
-            <div className="mt-4 sm:mt-5">
+            <div className="mt-4 sm:mt-5 mb-10">
               {/* Demo content */}
               {toolBase.demoContent && toolBase.demoContent.length > 0 && (
                 <div className="space-y-6 mb-6">
@@ -367,7 +367,7 @@ const ToolDetail: React.FC = () => {
                               <img 
                                 src={demo.url} 
                                 alt={demo.description}
-                                className="rounded-lg w-full object-cover aspect-video"
+                                className="rounded-lg w-full h-full object-cover"
                               />
                               <figcaption className="text-xs sm:text-sm text-muted-foreground mt-2">
                                 {demo.description}

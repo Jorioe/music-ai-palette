@@ -80,6 +80,7 @@ export interface MusicTool {
   inputOptions?: string;
   resolution?: string;
   styleOptions?: string;
+  textIntegration?: number;
 
   //vocals
   canSing?: boolean;

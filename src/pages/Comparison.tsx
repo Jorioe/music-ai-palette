@@ -100,8 +100,8 @@ const Comparison: React.FC = () => {
             { name: "Desktop app", key: "desktop", tooltip: "Beschikbaar als downloadbare app" },
             { name: "Mobile app", key: "mobile", tooltip: "Beschikbaar voor mobiel gebruik" },
             { name: "Input opties", key: "input", tooltip: "Welke input opties zijn er?" },
-            { name: "Resolutie", key: "resolution", tooltip: "Resolutie van de afbeelding" },
             { name: "Stijlen", key: "style", tooltip: "Stijlen van de afbeelding" },
+            { name: "Tekst integratie", key: "text", tooltip: "Hoe goed integreert de tool tekst in de afbeelding?" },
             { name: "Gebruiksvriendelijkheid", key: "ease", tooltip: "Hoe makkelijk is het in gebruik (1–5)" },
             { name: "Snelheid", key: "speed", tooltip: "Hoe snel genereert het resultaten (1–5)" },
             { name: "Gratis beschikbaar", key: "free", tooltip: "Is er een gratis versie?" },
@@ -190,8 +190,8 @@ const Comparison: React.FC = () => {
         return tool.priceModel;
       case "input":
         return tool.inputOptions;
-      case "resolution":
-        return tool.resolution;
+      case "text":
+        return tool.textIntegration;
       case "style":
         return tool.styleOptions;
       case "sing":
@@ -337,7 +337,7 @@ const Comparison: React.FC = () => {
                             const toolId = selectedTools[0];
                             const featureValue = getFeatureValue(toolId, feature.key);
                             
-                            return feature.key === 'ease' || feature.key === 'speed' ? (
+                            return feature.key === 'ease' || feature.key === 'speed' || feature.key === 'text' ? (
                               <div className="flex justify-end">
                                 <RatingStars rating={featureValue as number || 0} readOnly={true} />
                               </div>
@@ -370,15 +370,17 @@ const Comparison: React.FC = () => {
                         {/* Feature name - Center */}
                         <td className="p-2 sm:p-4 font-medium text-center">
                           <div className="flex items-center justify-center gap-1">
-                            <span>{feature.name}</span>
+                            <span className="text-[13px] sm:text-base">{feature.name}</span>
                             {feature.tooltip && (
-                              <TooltipProvider>
+                              <TooltipProvider delayDuration={0}>
                                 <Tooltip>
                                   <TooltipTrigger asChild>
-                                    <HelpCircle size={14} className="flex-shrink-0 text-muted-foreground cursor-pointer" />
+                                    <button className="focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-full">
+                                      <HelpCircle size={14} className="flex-shrink-0 text-muted-foreground" />
+                                    </button>
                                   </TooltipTrigger>
-                                  <TooltipContent side="top">
-                                    <p className="max-w-xs text-xs sm:text-sm">{feature.tooltip}</p>
+                                  <TooltipContent side="top" sideOffset={5} className="bg-popover p-3 text-popover-foreground shadow-md rounded-lg border">
+                                    <p className="max-w-[200px] text-xs sm:text-sm">{feature.tooltip}</p>
                                   </TooltipContent>
                                 </Tooltip>
                               </TooltipProvider>
@@ -392,7 +394,7 @@ const Comparison: React.FC = () => {
                             const toolId = selectedTools[1];
                             const featureValue = getFeatureValue(toolId, feature.key);
                             
-                            return feature.key === 'ease' || feature.key === 'speed' ? (
+                            return feature.key === 'ease' || feature.key === 'speed' || feature.key === 'text' ? (
                               <div className="flex justify-start">
                                 <RatingStars rating={featureValue as number || 0} readOnly={true} />
                               </div>
@@ -427,7 +429,23 @@ const Comparison: React.FC = () => {
                       <td className="p-2 sm:p-4 text-right text-xs sm:text-sm md:text-base">
                         {musicTools.find(t => t.id === selectedTools[0])?.price || "N/A"}
                       </td>
-                      <td className="p-2 sm:p-4 font-medium text-center">Prijsindicatie</td>
+                      <td className="p-2 sm:p-4 font-medium text-center">
+                        <div className="flex items-center justify-center gap-1">
+                          <span className="text-[13px] sm:text-base">Prijsindicatie</span>
+                          <TooltipProvider delayDuration={0}>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <button className="focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-full">
+                                  <HelpCircle size={14} className="flex-shrink-0 text-muted-foreground" />
+                                </button>
+                              </TooltipTrigger>
+                              <TooltipContent side="top" sideOffset={5} className="bg-popover p-3 text-popover-foreground shadow-md rounded-lg border">
+                                <p className="max-w-[200px] text-xs sm:text-sm">Indicatie van de kosten voor het gebruik van de tool</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                        </div>
+                      </td>
                       <td className="p-2 sm:p-4 text-left text-xs sm:text-sm md:text-base">
                         {musicTools.find(t => t.id === selectedTools[1])?.price || "N/A"}
                       </td>

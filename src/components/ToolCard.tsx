@@ -9,6 +9,16 @@ interface ToolCardProps {
   tool: MusicTool;
 }
 
+const getPriceLabel = (tool: MusicTool): string => {
+  if (tool.price && tool.price.toLowerCase() === 'gratis') {
+    return 'Gratis';
+  }
+  if (tool.hasFreeVersion) {
+    return 'Gratis versie';
+  }
+  return 'Betaald';
+};
+
 const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
   const navigate = useNavigate();
 
@@ -72,7 +82,7 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
           {getMetricBadge(<Zap className="w-4 h-4" />, tool.speed, "Snelheid")}
           <div className="flex items-center gap-1 text-sm">
             <DollarSign className="w-4 h-4" />
-            <span className="text-muted-foreground text-xs">{tool.hasFreeVersion ? "Gratis versie" : "Betaald"}</span>
+            <span className="text-muted-foreground text-xs">{getPriceLabel(tool)}</span>
           </div>
         </div>
 

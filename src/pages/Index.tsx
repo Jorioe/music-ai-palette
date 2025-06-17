@@ -2,20 +2,31 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import ToolCard from '../components/ToolCard';
 import CategoryFilter from '../components/CategoryFilter';
+import PriceFilter, { PriceCategory } from '../components/PriceFilter';
 import { musicTools } from '../data/musicTools';
 import { ToolCategory } from '../types/MusicTool';
 
 const Index = () => {
-  const [selectedCategory, setSelectedCategory] = useState<ToolCategory>('all');
+  const [selectedCategory, setSelectedCategory] = useState<ToolCategory | 'all'>('all');
+  const [selectedPrice, setSelectedPrice] = useState<PriceCategory>('all');
 
   // Scroll naar bovenkant bij laden van de pagina
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const filteredTools = selectedCategory === 'all'
-    ? musicTools
-    : musicTools.filter(tool => tool.category.includes(selectedCategory));
+  const filteredTools = musicTools
+    .filter(tool => {
+      if (selectedCategory === 'all') return true;
+      return tool.category.includes(selectedCategory);
+    })
+    .filter(tool => {
+      if (selectedPrice === 'all') return true;
+      if (selectedPrice === 'free') return tool.price.toLowerCase() === 'gratis';
+      if (selectedPrice === 'freemium') return tool.hasFreeVersion && tool.price.toLowerCase() !== 'gratis';
+      if (selectedPrice === 'paid') return !tool.hasFreeVersion && tool.price.toLowerCase() !== 'gratis';
+      return true;
+    });
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -31,10 +42,18 @@ const Index = () => {
           </p>
         </div>
         
-        <CategoryFilter 
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
+        <div className="flex flex-wrap justify-between items-center mb-6">
+          <div className="flex flex-wrap gap-2">
+            <CategoryFilter 
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+            />
+          </div>
+          <PriceFilter
+            selectedPrice={selectedPrice}
+            setSelectedPrice={setSelectedPrice}
+          />
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredTools.map(tool => (

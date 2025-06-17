@@ -3,13 +3,13 @@ import { ToolCategory } from '../types/MusicTool';
 import { TOOL_CATEGORIES } from '../data/musicTools';
 
 interface CategoryFilterProps {
-  selectedCategory: ToolCategory;
-  setSelectedCategory: (category: ToolCategory) => void;
+  selectedCategory: ToolCategory | 'all';
+  setSelectedCategory: (category: ToolCategory | 'all') => void;
 }
 
 const CategoryFilter: React.FC<CategoryFilterProps> = ({ selectedCategory, setSelectedCategory }) => {
-  const categories: { label: string; value: ToolCategory }[] = [
-    { label: 'Alle', value: 'all' as ToolCategory },
+  const categories: { label: string; value: ToolCategory | 'all' }[] = [
+    { label: 'Alle', value: 'all' },
     // { label: 'Vocals genereren', value: TOOL_CATEGORIES.VOCAL_GENERATION },
     { label: 'Stem isolatie', value: TOOL_CATEGORIES.STEM_SEPARATION },
     { label: 'Muziek genereren', value: TOOL_CATEGORIES.MUSIC_GENERATION },
@@ -19,7 +19,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({ selectedCategory, setSe
   ];
 
   return (
-    <div className="flex flex-wrap gap-2 mb-6">
+    <>
       {categories.map((category) => (
         <button
           key={category.value}
@@ -33,7 +33,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({ selectedCategory, setSe
           {category.label}
         </button>
       ))}
-    </div>
+    </>
   );
 }
 
